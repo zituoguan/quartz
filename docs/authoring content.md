@@ -1,47 +1,48 @@
 ---
-title: Authoring Content
+title: 内容创作
 ---
 
-All of the content in your Quartz should go in the `/content` folder. The content for the home page of your Quartz lives in `content/index.md`. If you've [[index#🪴 Get Started|setup Quartz]] already, this folder should already be initialized. Any Markdown in this folder will get processed by Quartz.
+你所有的 Quartz 内容都应放在 `/content` 文件夹中。Quartz 首页的内容位于 `content/index.md`。如果你已经[[index#🪴 Get Started|完成了 Quartz 的设置]]，这个文件夹应该已经初始化。该文件夹中的任何 Markdown 文件都会被 Quartz 处理。
 
-It is recommended that you use [Obsidian](https://obsidian.md/) as a way to edit and maintain your Quartz. It comes with a nice editor and graphical interface to preview, edit, and link your local files and attachments.
+推荐使用 [Obsidian](https://obsidian.md/) 来编辑和维护你的 Quartz。它自带优秀的编辑器和图形界面，方便你预览、编辑和链接本地文件及附件。
 
-Got everything setup? Let's [[build]] and preview your Quartz locally!
+一切都设置好了吗？让我们[[build|构建]]并在本地预览你的 Quartz 吧！
 
-## Syntax
+## 语法
 
-As Quartz uses Markdown files as the main way of writing content, it fully supports Markdown syntax. By default, Quartz also ships with a few syntax extensions like [Github Flavored Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) (footnotes, strikethrough, tables, tasklists) and [Obsidian Flavored Markdown](https://help.obsidian.md/Editing+and+formatting/Obsidian+Flavored+Markdown) ([[callouts]], [[wikilinks]]).
+Quartz 以 Markdown 文件作为主要的内容创作方式，因此完全支持 Markdown 语法。默认情况下，Quartz 还内置了一些语法扩展，比如 [Github Flavored Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)（脚注、删除线、表格、任务列表）和 [Obsidian Flavored Markdown](https://help.obsidian.md/Editing+and+formatting/Obsidian+Flavored+Markdown)（[[callouts]]、[[wikilinks]]）。
 
-Additionally, Quartz also allows you to specify additional metadata in your notes called **frontmatter**.
+此外，Quartz 还允许你在笔记中指定额外的元数据，称为 **frontmatter**。
 
 ```md title="content/note.md"
 ---
-title: Example Title
+title: 示例标题
 draft: false
 tags:
-  - example-tag
+  - 示例标签
 ---
 
-The rest of your content lives here. You can use **Markdown** here :)
+你的内容正文写在这里。你可以在这里使用 **Markdown** :)
 ```
 
-Some common frontmatter fields that are natively supported by Quartz:
+Quartz 原生支持的一些常用 frontmatter 字段：
 
-- `title`: Title of the page. If it isn't provided, Quartz will use the name of the file as the title.
-- `description`: Description of the page used for link previews.
-- `permalink`: A custom URL for the page that will remain constant even if the path to the file changes.
-- `aliases`: Other names for this note. This is a list of strings.
-- `tags`: Tags for this note.
-- `draft`: Whether to publish the page or not. This is one way to make [[private pages|pages private]] in Quartz.
-- `date`: A string representing the day the note was published. Normally uses `YYYY-MM-DD` format.
+- `title`：页面标题。如果未提供，Quartz 会使用文件名作为标题。
+- `description`：用于链接预览的页面描述。
+- `permalink`：页面的自定义 URL，即使文件路径更改也保持不变。
+- `aliases`：该笔记的其他名称。为字符串列表。
+- `tags`：该笔记的标签。
+- `draft`：是否发布该页面。这也是让[[private pages|页面私有]]的一种方式。
+- `date`：笔记发布的日期字符串，通常使用 `YYYY-MM-DD` 格式。
 
-See [[Frontmatter]] for a complete list of frontmatter.
+完整的 frontmatter 字段列表请参见 [[Frontmatter]]。
 
-## Syncing your Content
+## 内容同步
 
-When your Quartz is at a point you're happy with, you can save your changes to GitHub.
-First, make sure you've [[setting up your GitHub repository|already setup your GitHub repository]] and then do `npx quartz sync`.
+当你对 Quartz 的内容满意后，可以将更改保存到 GitHub。
+首先，确保你已经[[setting up your GitHub repository|设置好了 GitHub 仓库]]，然后执行 `npx quartz sync`。
 
-## Customization
+## 个性化定制
 
-Frontmatter parsing for `title`, `tags`, `aliases` and `cssclasses` is a functionality of the [[Frontmatter]] plugin, `date` is handled by the [[CreatedModifiedDate]] plugin and `description` by the [[Description]] plugin. See the plugin pages for customization options.
+`title`、`tags`、`aliases` 和 `cssclasses` 的 frontmatter 解析由 [[Frontmatter]] 插件实现，`date` 字段由 [[CreatedModifiedDate]] 插件处理，`description` 字段由 [[Description]] 插件处理。更多定制选项请参见各插件页面。
+

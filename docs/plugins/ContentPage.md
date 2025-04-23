@@ -4,15 +4,15 @@ tags:
   - plugin/emitter
 ---
 
-This plugin is a core component of the Quartz framework. It generates the HTML pages for each piece of Markdown content. It emits the full-page [[layout]], including headers, footers, and body content, among others.
+该插件是 Quartz 框架的核心组件之一。它为每个 Markdown 内容生成 HTML 页面，输出完整页面的 [[layout]]，包括页眉、页脚和正文内容等。
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> 有关如何添加、移除或配置插件的信息，请参见 [[configuration#Plugins|配置]] 页面。
 
-This plugin has no configuration options.
+该插件没有配置选项。
 
 ## API
 
-- Category: Emitter
-- Function name: `Plugin.ContentPage()`.
-- Source: [`quartz/plugins/emitters/contentPage.tsx`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/contentPage.tsx).
+- 分类：Emitter
+- 函数名：`Plugin.ContentPage()`
+- 源码：[`quartz/plugins/emitters/contentPage.tsx`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/contentPage.tsx)

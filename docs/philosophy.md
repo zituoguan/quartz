@@ -1,47 +1,48 @@
 ---
-title: Philosophy of Quartz
+title: Quartz 的哲学
 ---
 
-## A garden should be a true hypertext
+## 花园应是真正的超文本
 
-> The garden is the web as topology. Every walk through the garden creates new paths, new meanings, and when we add things to the garden we add them in a way that allows many future, unpredicted relationships.
+> 花园是作为拓扑结构的网络。每一次在花园中的漫步都会创造新的路径、新的意义，而当我们向花园中添加内容时，我们以一种允许未来产生许多不可预见关系的方式来添加。
 >
-> _(The Garden and the Stream)_
+> _(摘自《花园与溪流》)_
 
-The problem with the file cabinet is that it focuses on efficiency of access and interoperability rather than generativity and creativity. Thinking is not linear, nor is it hierarchical. In fact, not many things are linear or hierarchical at all. Then why is it that most tools and thinking strategies assume a nice chronological or hierarchical order for my thought processes?
+文件柜的问题在于它关注的是访问效率和互操作性，而不是生成性和创造力。思考不是线性的，也不是层级化的。事实上，很少有事物是线性或层级化的。那么，为什么大多数工具和思维策略都假设我的思考过程有一个漂亮的时间顺序或层级结构呢？
 
-The ideal tool for thought for me would embrace the messiness of my mind, and organically help insights emerge from chaos instead of forcing an artificial order. A rhizomatic, not arboresecent, form of note taking.
+对我来说，理想的思维工具应该拥抱我思维的混乱，并有机地帮助洞见从混沌中浮现，而不是强行施加一种人为的秩序。是一种根茎状（rhizomatic），而非树状（arboresecent）的笔记方式。
 
-My goal with a digital garden is not purely as an organizing system and information store (though it works nicely for that). I want my digital garden to be a playground for new ways ideas can connect together. As a result, existing formal organizing systems like Zettelkasten or the hierarchical folder structures of Notion don’t work well for me. There is way too much upfront friction that by the time I’ve thought about how to organize my thought into folders categories, I’ve lost it.
+我建立数字花园的目标不仅仅是作为一个组织系统和信息存储（虽然它在这方面也很不错）。我希望我的数字花园成为想法之间产生新连接的游乐场。因此，现有的正式组织系统如 Zettelkasten 或 Notion 的层级文件夹结构对我来说并不适用。前期的摩擦太大，以至于当我还在思考如何将想法组织进文件夹和分类时，灵感已经消失了。
 
-Quartz embraces the inherent rhizomatic and web-like nature of our thinking and tries to encourage note-taking in a similar form.
+Quartz 拥抱我们思维中根茎状和网络化的本质，并试图鼓励以类似的方式进行笔记。
 
 ---
 
-## A garden should be shared
+## 花园应当被分享
 
-The goal of digital gardening should be to tap into your network’s collective intelligence to create constructive feedback loops. If done well, I have a shareable representation of my thoughts that I can send out into the world and people can respond. Even for my most half-baked thoughts, this helps me create a feedback cycle to strengthen and fully flesh out that idea.
+数字花园的目标应是利用你的网络集体智慧，创造建设性的反馈循环。如果做得好，我就有了一个可分享的思想表达，可以将其发送到世界各地，供他人回应。即使是我最不成熟的想法，这也能帮助我形成反馈循环，进一步完善和充实这些想法。
 
-Quartz is designed first and foremost as a tool for publishing [digital gardens](https://jzhao.xyz/posts/networked-thought) to the web. To me, digital gardening is not just passive knowledge collection. It’s a form of expression and sharing.
+Quartz 首先被设计为一个用于发布[数字花园](https://jzhao.xyz/posts/networked-thought)到网络的工具。对我来说，数字花园不仅仅是被动的知识收集，更是一种表达和分享的方式。
 
-> “[One] who works with the door open gets all kinds of interruptions, but [they] also occasionally gets clues as to what the world is and what might be important.”
+> “[一个]敞开门工作的人会遇到各种打扰，但[他/她]偶尔也会获得关于世界是什么、什么可能重要的线索。”
 > — Richard Hamming
 
-**The goal of Quartz is to make sharing your digital garden free and simple.**
+**Quartz 的目标是让你免费且简单地分享你的数字花园。**
 
 ---
 
-## A garden should be your own
+## 花园应属于你自己
 
-At its core, Quartz is designed to be easy to use enough for non-technical people to get going but also powerful enough that senior developers can tweak it to work how they'd like it to work.
+本质上，Quartz 的设计既要让非技术用户也能轻松上手，也要足够强大，让资深开发者可以根据自己的需求进行调整。
 
-1. If you like the default configuration of Quartz and just want to change the content, the only thing that you need to change is the contents of the `content` folder.
-2. If you'd like to make basic configuration tweaks but don't want to edit source code, one can tweak the plugins and components in `quartz.config.ts` and `quartz.layout.ts` in a guided manner to their liking.
-3. If you'd like to tweak the actual source code of the underlying plugins, components, or even build process, Quartz purposefully ships its full source code to the end user to allow customization at this level too.
+1. 如果你喜欢 Quartz 的默认配置，只想更改内容，只需修改 `content` 文件夹中的内容即可。
+2. 如果你想做一些基础配置调整，但不想编辑源代码，可以在 `quartz.config.ts` 和 `quartz.layout.ts` 中以引导方式调整插件和组件。
+3. 如果你想修改底层插件、组件甚至构建流程的源代码，Quartz 也会将完整的源代码交付给终端用户，允许你在这个层面进行自定义。
 
-Most software either confines you to either
+大多数软件要么
 
-1. Makes it easy to tweak content but not the presentation
-2. Gives you too many knobs to tune the presentation without good opinionated defaults
+1. 只让你轻松调整内容，但无法更改展示方式
+2. 给你太多展示方式的调节选项，却没有好的默认方案
 
-**Quartz should feel powerful but ultimately be an intuitive tool fully within your control.** It should be a piece of [agentic software](https://jzhao.xyz/posts/agentic-computing). Ultimately, it should have the right affordances to nudge users towards good defaults but never dictate what the 'correct' way of using it is.
+**Quartz 应该让人觉得强大，但最终是一个完全在你掌控之中的直观工具。** 它应该是一款[赋能型软件](https://jzhao.xyz/posts/agentic-computing)。最终，它应当有合适的提示，引导用户采用良好的默认设置，但绝不规定“正确”的使用方式。
+

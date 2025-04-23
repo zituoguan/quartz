@@ -4,26 +4,26 @@ tags:
   - feature/emitter
 ---
 
-The Custom OG Images emitter plugin generates social media preview images for your pages. It uses [satori](https://github.com/vercel/satori) to convert HTML/CSS into images, allowing you to create beautiful and consistent social media preview cards for your content.
+Custom OG Images（自定义 OG 图片）发射器插件会为你的页面自动生成社交媒体预览图片。它使用 [satori](https://github.com/vercel/satori) 将 HTML/CSS 转换为图片，让你为内容创建美观且一致的社交媒体预览卡片。
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> 关于如何添加、移除或配置插件，请参阅 [[configuration#Plugins|配置]] 页面。
 
-## Features
+## 功能特性
 
-- Automatically generates social media preview images for each page
-- Supports both light and dark mode themes
-- Customizable through frontmatter properties
-- Fallback to default image when needed
-- Full control over image design through custom components
+- 自动为每个页面生成社交媒体预览图片
+- 支持亮色和暗色主题
+- 可通过 frontmatter 属性自定义
+- 需要时可回退到默认图片
+- 通过自定义组件完全控制图片设计
 
-## Configuration
+## 配置
 
-> [!info] Info
+> [!info] 信息
 >
-> The `baseUrl` property in your [[configuration]] must be set properly for social images to work correctly, as they require absolute paths.
+> 你的 [[configuration]] 中必须正确设置 `baseUrl` 属性，社交图片需要绝对路径才能正常工作。
 
-This plugin accepts the following configuration options:
+该插件支持以下配置选项：
 
 ```typescript title="quartz.config.ts"
 import { CustomOgImages } from "./quartz/plugins/emitters/ogImage"
@@ -32,53 +32,53 @@ const config: QuartzConfig = {
   plugins: {
     emitters: [
       CustomOgImages({
-        colorScheme: "lightMode", // what colors to use for generating image, same as theme colors from config, valid values are "darkMode" and "lightMode"
-        width: 1200, // width to generate with (in pixels)
-        height: 630, // height to generate with (in pixels)
-        excludeRoot: false, // wether to exclude "/" index path to be excluded from auto generated images (false = use auto, true = use default og image)
-        imageStructure: defaultImage, // custom image component to use
+        colorScheme: "lightMode", // 生成图片时使用的配色方案，与主题色一致，可选 "darkMode" 或 "lightMode"
+        width: 1200, // 生成图片的宽度（像素）
+        height: 630, // 生成图片的高度（像素）
+        excludeRoot: false, // 是否排除 "/" 首页不自动生成图片（false=自动，true=使用默认 og 图片）
+        imageStructure: defaultImage, // 使用的自定义图片组件
       }),
     ],
   },
 }
 ```
 
-### Configuration Options
+### 配置选项
 
-| Option           | Type      | Default      | Description                                                       |
-| ---------------- | --------- | ------------ | ----------------------------------------------------------------- |
-| `colorScheme`    | string    | "lightMode"  | Theme to use for generating images ("darkMode" or "lightMode")    |
-| `width`          | number    | 1200         | Width of the generated image in pixels                            |
-| `height`         | number    | 630          | Height of the generated image in pixels                           |
-| `excludeRoot`    | boolean   | false        | Whether to exclude the root index page from auto-generated images |
-| `imageStructure` | component | defaultImage | Custom component to use for image generation                      |
+| 选项              | 类型      | 默认值        | 描述                                                         |
+| ----------------- | --------- | ------------- | ------------------------------------------------------------ |
+| `colorScheme`     | string    | "lightMode"   | 生成图片时使用的主题（"darkMode" 或 "lightMode"）             |
+| `width`           | number    | 1200          | 生成图片的宽度（像素）                                       |
+| `height`          | number    | 630           | 生成图片的高度（像素）                                       |
+| `excludeRoot`     | boolean   | false         | 是否排除首页不自动生成图片                                   |
+| `imageStructure`  | component | defaultImage  | 用于生成图片的自定义组件                                     |
 
-## Frontmatter Properties
+## Frontmatter 属性
 
-The following properties can be used to customize your link previews:
+以下属性可用于自定义你的链接预览：
 
-| Property            | Alias            | Summary                             |
-| ------------------- | ---------------- | ----------------------------------- |
-| `socialDescription` | `description`    | Description to be used for preview. |
-| `socialImage`       | `image`, `cover` | Link to preview image.              |
+| 属性                | 别名                | 说明                         |
+| ------------------- | ------------------- | ---------------------------- |
+| `socialDescription` | `description`       | 用于预览的描述。             |
+| `socialImage`       | `image`, `cover`    | 预览图片的链接。             |
 
-The `socialImage` property should contain a link to an image either relative to `quartz/static`, or a full URL. If you have a folder for all your images in `quartz/static/my-images`, an example for `socialImage` could be `"my-images/cover.png"`. Alternatively, you can use a fully qualified URL like `"https://example.com/cover.png"`.
+`socialImage` 属性应包含一张图片的链接，可以是相对于 `quartz/static` 的路径，也可以是完整的 URL。如果你将所有图片放在 `quartz/static/my-images` 文件夹下，`socialImage` 示例为 `"my-images/cover.png"`。也可以直接使用完整 URL，如 `"https://example.com/cover.png"`。
 
-> [!info] Info
+> [!info] 信息
 >
-> The priority for what image will be used for the cover image looks like the following: `frontmatter property > generated image (if enabled) > default image`.
+> 封面图片的优先级如下：`frontmatter 属性 > 自动生成图片（如启用）> 默认图片`。
 >
-> The default image (`quartz/static/og-image.png`) will only be used as a fallback if nothing else is set. If the Custom OG Images emitter plugin is enabled, it will be treated as the new default per page, but can be overwritten by setting the `socialImage` frontmatter property for that page.
+> 默认图片（`quartz/static/og-image.png`）仅在没有其他设置时作为回退。如果启用了 Custom OG Images 插件，它会成为每页的新默认图片，但可以通过为该页面设置 `socialImage` frontmatter 属性覆盖。
 
-## Customization
+## 自定义
 
-You can fully customize how the images being generated look by passing your own component to `imageStructure`. This component takes JSX + some page metadata/config options and converts it to an image using [satori](https://github.com/vercel/satori). Vercel provides an [online playground](https://og-playground.vercel.app/) that can be used to preview how your JSX looks like as a picture. This is ideal for prototyping your custom design.
+你可以通过传递自定义组件给 `imageStructure`，完全自定义生成图片的外观。该组件接收 JSX 及部分页面元数据/配置选项，并通过 [satori](https://github.com/vercel/satori) 转换为图片。Vercel 提供了一个[在线预览工具](https://og-playground.vercel.app/)，可用于预览你的 JSX 设计，非常适合原型设计。
 
-### Fonts
+### 字体
 
-You will also be passed an array containing a header and a body font (where the first entry is header and the second is body). The fonts matches the ones selected in `theme.typography.header` and `theme.typography.body` from `quartz.config.ts` and will be passed in the format required by [`satori`](https://github.com/vercel/satori). To use them in CSS, use the `.name` property (e.g. `fontFamily: fonts[1].name` to use the "body" font family).
+你还会收到一个包含标题和正文字体的数组（第一个为标题，第二个为正文）。字体与 `quartz.config.ts` 中 `theme.typography.header` 和 `theme.typography.body` 选择的字体一致，并以 [`satori`](https://github.com/vercel/satori) 所需格式传递。要在 CSS 中使用，使用 `.name` 属性（如 `fontFamily: fonts[1].name` 使用“正文”字体）。
 
-An example of a component using the header font could look like this:
+以下是一个使用标题字体的组件示例：
 
 ```tsx title="socialImage.tsx"
 export const myImage: SocialImageOptions["imageStructure"] = (...) => {
@@ -86,9 +86,9 @@ export const myImage: SocialImageOptions["imageStructure"] = (...) => {
 }
 ```
 
-> [!example]- Local fonts
+> [!example]- 本地字体
 >
-> For cases where you use a local fonts under `static` folder, make sure to set the correct `@font-face` in `custom.scss`
+> 如果你在 `static` 文件夹下使用本地字体，请确保在 `custom.scss` 中设置正确的 `@font-face`
 >
 > ```scss title="custom.scss"
 > @font-face {
@@ -100,7 +100,7 @@ export const myImage: SocialImageOptions["imageStructure"] = (...) => {
 > }
 > ```
 >
-> Then in `quartz/util/og.tsx`, you can load the Satori fonts like so:
+> 然后在 `quartz/util/og.tsx` 中这样加载 Satori 字体：
 >
 > ```tsx title="quartz/util/og.tsx"
 > import { joinSegments, QUARTZ } from "../path"
@@ -109,7 +109,7 @@ export const myImage: SocialImageOptions["imageStructure"] = (...) => {
 >
 > const newsreaderFontPath = joinSegments(QUARTZ, "static", "Newsreader.woff2")
 > export async function getSatoriFonts(headerFont: FontSpecification, bodyFont: FontSpecification) {
->   // ... rest of implementation remains same
+>   // ... 其余实现保持不变
 >   const fonts: SatoriOptions["fonts"] = [
 >     ...headerFontData.map((data, idx) => ({
 >       name: headerFontName,
@@ -135,17 +135,17 @@ export const myImage: SocialImageOptions["imageStructure"] = (...) => {
 > }
 > ```
 >
-> This font then can be used with your custom structure.
+> 这样你就可以在自定义结构中使用该字体了。
 
-## Examples
+## 示例
 
-Here are some example image components you can use as a starting point:
+以下是一些可用作起点的图片组件示例：
 
-### Basic Example
+### 基础示例
 
-This example will generate images that look as follows:
+该示例生成的图片如下所示：
 
-| Light                                      | Dark                                      |
+| 亮色                                      | 暗色                                      |
 | ------------------------------------------ | ----------------------------------------- |
 | ![[custom-social-image-preview-light.png]] | ![[custom-social-image-preview-dark.png]] |
 
@@ -163,7 +163,7 @@ export const customImage: SocialImageOptions["imageStructure"] = (
   fonts: SatoriOptions["fonts"],
   fileData: QuartzPluginData,
 ) => {
-  // How many characters are allowed before switching to smaller font
+  // 超过多少字符切换为小号字体
   const fontBreakPoint = 22
   const useSmallerFont = title.length > fontBreakPoint
 
@@ -232,9 +232,9 @@ export const customImage: SocialImageOptions["imageStructure"] = (
 }
 ```
 
-### Advanced Example
+### 高级示例
 
-The following example includes a customized social image with a custom background and formatted date:
+以下示例包含自定义背景和格式化日期的社交图片：
 
 ```typescript title="custom-og.tsx"
 export const og: SocialImageOptions["Component"] = (

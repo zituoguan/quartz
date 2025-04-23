@@ -4,9 +4,9 @@ tags:
   - plugin/emitter
 ---
 
-This plugin emits HTML redirect pages for aliases and permalinks defined in the frontmatter of content files.
+该插件会为内容文件前言（frontmatter）中定义的别名（alias）和永久链接（permalink）生成 HTML 重定向页面。
 
-For example, A `foo.md` has the following frontmatter
+例如，`foo.md` 文件的前言如下：
 
 ```md title="foo.md"
 ---
@@ -16,22 +16,22 @@ alias:
 ---
 ```
 
-The target `host.me/bar` will be redirected to `host.me/foo`
+此时，访问 `host.me/bar` 会被永久重定向到 `host.me/foo`。
 
-Note that these are permanent redirect.
+请注意，这些是永久重定向。
 
-The emitter supports the following aliases:
+该发射器支持以下别名字段：
 
 - `aliases`
 - `alias`
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> 有关如何添加、移除或配置插件的信息，请参阅 [[configuration#Plugins|配置]] 页面。
 
-This plugin has no configuration options.
+该插件没有配置选项。
 
 ## API
 
-- Category: Emitter
-- Function name: `Plugin.AliasRedirects()`.
-- Source: [`quartz/plugins/emitters/aliases.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/aliases.ts).
+- 分类：Emitter
+- 函数名：`Plugin.AliasRedirects()`
+- 源码：[quartz/plugins/emitters/aliases.ts](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/aliases.ts)

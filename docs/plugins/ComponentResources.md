@@ -4,15 +4,15 @@ tags:
   - plugin/emitter
 ---
 
-This plugin manages and emits the static resources required for the Quartz framework. This includes CSS stylesheets and JavaScript scripts that enhance the functionality and aesthetics of the generated site. See also the `cdnCaching` option in the `theme` section of the [[configuration]].
+该插件负责管理并输出 Quartz 框架所需的静态资源，包括增强生成站点功能和美观性的 CSS 样式表与 JavaScript 脚本。更多信息请参见 [[configuration]] 中 `theme` 部分的 `cdnCaching` 选项。
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> 关于如何添加、移除或配置插件，请参阅 [[configuration#Plugins|配置]] 页面。
 
-This plugin has no configuration options.
+该插件无需配置选项。
 
 ## API
 
-- Category: Emitter
-- Function name: `Plugin.ComponentResources()`.
-- Source: [`quartz/plugins/emitters/componentResources.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/componentResources.ts).
+- 分类：Emitter
+- 函数名：`Plugin.ComponentResources()`
+- 源码：[quartz/plugins/emitters/componentResources.ts](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/componentResources.ts)

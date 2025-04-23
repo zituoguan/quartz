@@ -1,48 +1,49 @@
 ---
-title: Setting up your GitHub repository
+title: 设置你的 GitHub 仓库
 ---
 
-First, make sure you have Quartz [[index#🪴 Get Started|cloned and setup locally]].
+首先，确保你已经将 Quartz [[index#🪴 Get Started|克隆并在本地设置]]。
 
-Then, create a new repository on GitHub.com. Do **not** initialize the new repository with `README`, license, or `gitignore` files.
+然后，在 GitHub.com 上创建一个新的仓库。**不要**初始化新的仓库（不要添加 `README`、许可证或 `gitignore` 文件）。
 
 ![[github-init-repo-options.png]]
 
-At the top of your repository on GitHub.com's Quick Setup page, click the clipboard to copy the remote repository URL.
+在 GitHub.com 的仓库快速设置页面顶部，点击剪贴板图标复制远程仓库的 URL。
 
 ![[github-quick-setup.png]]
 
-In your terminal of choice, navigate to the root of your Quartz folder. Then, run the following commands, replacing `REMOTE-URL` with the URL you just copied from the previous step.
+在你选择的终端中，导航到 Quartz 文件夹的根目录。然后运行以下命令，将 `REMOTE-URL` 替换为你刚刚复制的仓库地址。
 
 ```bash
-# list all the repositories that are tracked
+# 列出所有已跟踪的仓库
 git remote -v
 
-# if the origin doesn't match your own repository, set your repository as the origin
+# 如果 origin 不匹配你自己的仓库，将你的仓库设置为 origin
 git remote set-url origin REMOTE-URL
 
-# if you don't have upstream as a remote, add it so updates work
+# 如果没有 upstream 远程仓库，添加它以便后续更新
 git remote add upstream https://github.com/jackyzha0/quartz.git
 ```
 
-Then, you can sync the content to upload it to your repository. This is a helper command that will do the initial push of your content to your repository.
+然后，你可以同步内容，将其上传到你的仓库。这是一个帮助命令，用于首次将内容推送到你的仓库。
 
 ```bash
 npx quartz sync --no-pull
 ```
 
 > [!warning]- `fatal: --[no-]autostash option is only valid with --rebase`
-> You may have an outdated version of `git`. Updating `git` should fix this issue.
+> 你可能使用了过时的 `git` 版本。更新 `git` 应该可以解决此问题。
 
-In future updates, you can simply run `npx quartz sync` every time you want to push updates to your repository.
+以后每次想要将更新推送到仓库时，只需运行 `npx quartz sync` 即可。
 
-> [!hint] Flags and options
-> For full help options, you can run `npx quartz sync --help`.
+> [!hint] 标志与选项
+> 查看完整帮助选项，可以运行 `npx quartz sync --help`。
 >
-> Most of these have sensible defaults but you can override them if you have a custom setup:
+> 大多数选项都有合理的默认值，但如果你有自定义设置，可以覆盖它们：
 >
-> - `-d` or `--directory`: the content folder. This is normally just `content`
-> - `-v` or `--verbose`: print out extra logging information
-> - `--commit` or `--no-commit`: whether to make a `git` commit for your changes
-> - `--push` or `--no-push`: whether to push updates to your GitHub fork of Quartz
-> - `--pull` or `--no-pull`: whether to try and pull in any updates from your GitHub fork (i.e. from other devices) before pushing
+> - `-d` 或 `--directory`：内容文件夹，通常为 `content`
+> - `-v` 或 `--verbose`：输出更多日志信息
+> - `--commit` 或 `--no-commit`：是否为更改创建 `git` 提交
+> - `--push` 或 `--no-push`：是否将更新推送到你在 GitHub 上的 Quartz 分叉
+> - `--pull` 或 `--no-pull`：推送前是否尝试从 GitHub 分叉拉取更新（例如来自其他设备）
+

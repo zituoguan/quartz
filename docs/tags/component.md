@@ -1,5 +1,6 @@
 ---
-title: Components
+title: 组件
 ---
 
-Want to create your own custom component? Check out the advanced guide on [[creating components]] for more information.
+想要创建自己的自定义组件？请查阅高级指南 [[创建组件]] 获取更多信息。
+

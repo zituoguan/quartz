@@ -4,21 +4,21 @@ tags:
   - plugin/transformer
 ---
 
-This plugin adds Citation support to Quartz.
+该插件为 Quartz 增加了引用（Citation）支持。
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> 有关如何添加、移除或配置插件的信息，请参见 [[configuration#Plugins|配置]] 页面。
 
-This plugin accepts the following configuration options:
+该插件接受以下配置选项：
 
-- `bibliographyFile`: the path to the bibliography file. Defaults to `./bibliography.bib`. This is relative to git source of your vault.
-- `suppressBibliography`: whether to suppress the bibliography at the end of the document. Defaults to `false`.
-- `linkCitations`: whether to link citations to the bibliography. Defaults to `false`.
-- `csl`: the citation style to use. Defaults to `apa`. Reference [rehype-citation](https://rehype-citation.netlify.app/custom-csl) for more options.
-- `prettyLink`: whether to use pretty links for citations. Defaults to `true`.
+- `bibliographyFile`：参考文献文件的路径。默认为 `./bibliography.bib`。该路径相对于您的仓库根目录。
+- `suppressBibliography`：是否在文档末尾隐藏参考文献。默认为 `false`。
+- `linkCitations`：是否将引用链接到参考文献。默认为 `false`。
+- `csl`：使用的引用格式。默认为 `apa`。更多选项请参考 [rehype-citation](https://rehype-citation.netlify.app/custom-csl)。
+- `prettyLink`：是否为引用使用美化链接。默认为 `true`。
 
 ## API
 
-- Category: Transformer
-- Function name: `Plugin.Citations()`.
-- Source: [`quartz/plugins/transformers/citations.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/citations.ts).
+- 分类：Transformer
+- 函数名：`Plugin.Citations()`。
+- 源码：[`quartz/plugins/transformers/citations.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/citations.ts)。

@@ -4,26 +4,26 @@ tags:
   - plugin/transformer
 ---
 
-This plugin provides support for [ox-hugo](https://github.com/kaushalmodi/ox-hugo) compatibility. See [[OxHugo compatibility]] for more information.
+该插件为 [ox-hugo](https://github.com/kaushalmodi/ox-hugo) 提供兼容性支持。更多信息请参见 [[OxHugo compatibility]]。
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> 有关如何添加、移除或配置插件的信息，请参见 [[configuration#Plugins|Configuration]] 页面。
 
-This plugin accepts the following configuration options:
+该插件支持以下配置选项：
 
-- `wikilinks`: If `true` (default), converts Hugo `{{ relref }}` shortcodes to Quartz [[wikilinks]].
-- `removePredefinedAnchor`: If `true` (default), strips predefined anchors from headings.
-- `removeHugoShortcode`: If `true` (default), removes Hugo shortcode syntax (`{{}}`) from the content.
-- `replaceFigureWithMdImg`: If `true` (default), replaces `<figure/>` with `![]()`.
-- `replaceOrgLatex`: If `true` (default), converts Org-mode [[features/Latex|Latex]] fragments to Quartz-compatible LaTeX wrapped in `$` (for inline) and `$$` (for block equations).
+- `wikilinks`：若为 `true`（默认），将 Hugo 的 `{{ relref }}` 短代码转换为 Quartz 的 [[wikilinks]]。
+- `removePredefinedAnchor`：若为 `true`（默认），会从标题中移除预定义锚点。
+- `removeHugoShortcode`：若为 `true`（默认），会从内容中移除 Hugo 短代码语法（`{{}}`）。
+- `replaceFigureWithMdImg`：若为 `true`（默认），会将 `<figure/>` 替换为 `![]()`。
+- `replaceOrgLatex`：若为 `true`（默认），会将 Org-mode 的 [[features/Latex|Latex]] 片段转换为 Quartz 兼容的 LaTeX（行内用 `$` 包裹，块级用 `$$` 包裹）。
 
 > [!warning]
-> While you can use this together with [[ObsidianFlavoredMarkdown]], it's not recommended because it might mutate the file in unexpected ways. Use with caution.
+> 虽然可以与 [[ObsidianFlavoredMarkdown]] 一起使用，但不推荐这样做，因为可能会导致文件发生意外更改。请谨慎使用。
 >
-> If you use `toml` frontmatter, make sure to configure the [[Frontmatter]] plugin accordingly. See [[OxHugo compatibility]] for an example.
+> 如果你使用 `toml` frontmatter，请确保相应配置 [[Frontmatter]] 插件。示例请参见 [[OxHugo compatibility]]。
 
 ## API
 
-- Category: Transformer
-- Function name: `Plugin.OxHugoFlavoredMarkdown()`.
-- Source: [`quartz/plugins/transformers/oxhugofm.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/oxhugofm.ts).
+- 分类：Transformer
+- 函数名：`Plugin.OxHugoFlavoredMarkdown()`。
+- 源码：[`quartz/plugins/transformers/oxhugofm.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/oxhugofm.ts)。

@@ -1,40 +1,40 @@
 ---
-title: Hosting
+title: 托管
 ---
 
-Quartz effectively turns your Markdown files and other resources into a bundle of HTML, JS, and CSS files (a website!).
+Quartz 可以将你的 Markdown 文件和其他资源高效地打包为 HTML、JS 和 CSS 文件（即一个网站！）。
 
-However, if you'd like to publish your site to the world, you need a way to host it online. This guide will detail how to deploy with common hosting providers but any service that allows you to deploy static HTML should work as well.
+不过，如果你想让全世界都能访问你的网站，你需要将其托管到线上。本指南将详细介绍如何使用常见的托管服务进行部署，但任何支持静态 HTML 部署的服务都可以使用。
 
 > [!warning]
-> The rest of this guide assumes that you've already created your own GitHub repository for Quartz. If you haven't already, [[setting up your GitHub repository|make sure you do so]].
+> 本指南假设你已经为 Quartz 创建了自己的 GitHub 仓库。如果还没有，请先[[设置你的 GitHub 仓库|完成这一步]]。
 
 > [!hint]
-> Some Quartz features (like [[RSS Feed]] and sitemap generation) require `baseUrl` to be configured properly in your [[configuration]] to work properly. Make sure you set this before deploying!
+> 某些 Quartz 功能（如 [[RSS Feed]] 和站点地图生成）需要在 [[configuration]] 中正确配置 `baseUrl`。请在部署前设置好！
 
 ## Cloudflare Pages
 
-1. Log in to the [Cloudflare dashboard](https://dash.cloudflare.com/) and select your account.
-2. In Account Home, select **Workers & Pages** > **Create application** > **Pages** > **Connect to Git**.
-3. Select the new GitHub repository that you created and, in the **Set up builds and deployments** section, provide the following information:
+1. 登录 [Cloudflare 控制台](https://dash.cloudflare.com/)，选择你的账户。
+2. 在账户主页选择 **Workers & Pages** > **Create application** > **Pages** > **Connect to Git**。
+3. 选择你新建的 GitHub 仓库，并在 **Set up builds and deployments** 部分填写以下信息：
 
-| Configuration option   | Value              |
-| ---------------------- | ------------------ |
-| Production branch      | `v4`               |
-| Framework preset       | `None`             |
-| Build command          | `npx quartz build` |
-| Build output directory | `public`           |
+| 配置项                | 值                  |
+| --------------------- | ------------------- |
+| Production branch     | `v4`                |
+| Framework preset      | `None`              |
+| Build command         | `npx quartz build`  |
+| Build output directory| `public`            |
 
-Press "Save and deploy" and Cloudflare should have a deployed version of your site in about a minute. Then, every time you sync your Quartz changes to GitHub, your site should be updated.
+点击 "Save and deploy"，Cloudflare 会在大约一分钟内部署你的网站。之后，每次你将 Quartz 的更改同步到 GitHub，网站都会自动更新。
 
-To add a custom domain, check out [Cloudflare's documentation](https://developers.cloudflare.com/pages/platform/custom-domains/).
+如需添加自定义域名，请参考 [Cloudflare 官方文档](https://developers.cloudflare.com/pages/platform/custom-domains/)。
 
 > [!warning]
-> Cloudflare Pages performs a shallow clone by default, so if you rely on `git` for timestamps, it is recommended that you add `git fetch --unshallow &&` to the beginning of the build command (e.g., `git fetch --unshallow && npx quartz build`).
+> Cloudflare Pages 默认执行浅克隆，如果你依赖 `git` 获取时间戳，建议在构建命令前加上 `git fetch --unshallow &&`（如：`git fetch --unshallow && npx quartz build`）。
 
 ## GitHub Pages
 
-In your local Quartz, create a new file `quartz/.github/workflows/deploy.yml`.
+在本地 Quartz 项目中新建文件 `quartz/.github/workflows/deploy.yml`。
 
 ```yaml title="quartz/.github/workflows/deploy.yml"
 name: Deploy Quartz site to GitHub Pages
@@ -59,15 +59,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Fetch all history for git info
+          fetch-depth: 0 # 获取完整历史以便 git 信息
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Install Dependencies
+      - name: 安装依赖
         run: npm ci
-      - name: Build Quartz
+      - name: 构建 Quartz
         run: npx quartz build
-      - name: Upload artifact
+      - name: 上传构建产物
         uses: actions/upload-pages-artifact@v3
         with:
           path: public
@@ -79,53 +79,53 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
+      - name: 部署到 GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
 ```
 
-Then:
+然后：
 
-1. Head to "Settings" tab of your forked repository and in the sidebar, click "Pages". Under "Source", select "GitHub Actions".
-2. Commit these changes by doing `npx quartz sync`. This should deploy your site to `<github-username>.github.io/<repository-name>`.
+1. 进入你 Fork 的仓库的 "Settings" 标签页，在侧边栏点击 "Pages"，在 "Source" 选择 "GitHub Actions"。
+2. 提交这些更改并执行 `npx quartz sync`。这会将你的网站部署到 `<github-username>.github.io/<repository-name>`。
 
 > [!hint]
-> If you get an error about not being allowed to deploy to `github-pages` due to environment protection rules, make sure you remove any existing GitHub pages environments.
+> 如果遇到因环境保护规则无法部署到 `github-pages` 的错误，请删除已有的 GitHub Pages 环境。
 >
-> You can do this by going to your Settings page on your GitHub fork and going to the Environments tab and pressing the trash icon. The GitHub action will recreate the environment for you correctly the next time you sync your Quartz.
+> 进入 GitHub 仓库的 Settings 页面，点击 Environments 标签，点击垃圾桶图标删除。下次同步 Quartz 时，GitHub Action 会自动重新创建环境。
 
 > [!info]
-> Quartz generates files in the format of `file.html` instead of `file/index.html` which means the trailing slashes for _non-folder paths_ are dropped. As GitHub pages does not do this redirect, this may cause existing links to your site that use trailing slashes to break. If not breaking existing links is important to you (e.g. you are migrating from Quartz 3), consider using [[#Cloudflare Pages]].
+> Quartz 生成的文件格式为 `file.html` 而不是 `file/index.html`，这意味着非文件夹路径的链接不会有斜杠结尾。GitHub Pages 不会自动重定向，可能导致原有带斜杠的链接失效。如果你需要兼容旧链接（如从 Quartz 3 迁移），建议使用 [[#Cloudflare Pages]]。
 
-### Custom Domain
+### 自定义域名
 
-Here's how to add a custom domain to your GitHub pages deployment.
+为 GitHub Pages 部署添加自定义域名的方法如下：
 
-1. Head to the "Settings" tab of your forked repository.
-2. In the "Code and automation" section of the sidebar, click "Pages".
-3. Under "Custom Domain", type your custom domain and click "Save".
-4. This next step depends on whether you are using an apex domain (`example.com`) or a subdomain (`subdomain.example.com`).
-   - If you are using an apex domain, navigate to your DNS provider and create an `A` record that points your apex domain to GitHub's name servers which have the following IP addresses:
+1. 进入你 Fork 的仓库的 "Settings" 标签页。
+2. 在侧边栏 "Code and automation" 部分点击 "Pages"。
+3. 在 "Custom Domain" 输入你的自定义域名并点击 "Save"。
+4. 根据你使用的是顶级域名（如 `example.com`）还是子域名（如 `subdomain.example.com`）进行如下操作：
+   - 顶级域名：在 DNS 服务商处添加 `A` 记录，指向 GitHub 的 IP 地址：
      - `185.199.108.153`
      - `185.199.109.153`
      - `185.199.110.153`
      - `185.199.111.153`
-   - If you are using a subdomain, navigate to your DNS provider and create a `CNAME` record that points your subdomain to the default domain for your site. For example, if you want to use the subdomain `quartz.example.com` for your user site, create a `CNAME` record that points `quartz.example.com` to `<github-username>.github.io`.
+   - 子域名：在 DNS 服务商处添加 `CNAME` 记录，将子域名指向你的 GitHub Pages 默认域名。例如，`quartz.example.com` 指向 `<github-username>.github.io`。
 
-![[dns records.png]]_The above shows a screenshot of Google Domains configured for both `jzhao.xyz` (an apex domain) and `quartz.jzhao.xyz` (a subdomain)._
+![[dns records.png]]_上图为 Google Domains 配置了 `jzhao.xyz`（顶级域名）和 `quartz.jzhao.xyz`（子域名）的截图。_
 
-See the [GitHub documentation](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain) for more detail about how to setup your own custom domain with GitHub Pages.
+详细操作可参考 [GitHub 官方文档](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain)。
 
-> [!question] Why aren't my changes showing up?
-> There could be many different reasons why your changes aren't showing up but the most likely reason is that you forgot to push your changes to GitHub.
+> [!question] 为什么我的更改没有显示？
+> 可能有多种原因，但最常见的是你忘记将更改推送到 GitHub。
 >
-> Make sure you save your changes to Git and sync it to GitHub by doing `npx quartz sync`. This will also make sure to pull any updates you may have made from other devices so you have them locally.
+> 请确保你已保存更改并通过 `npx quartz sync` 同步到 GitHub。这也会拉取你在其他设备上的更新，保证本地内容同步。
 
 ## Vercel
 
-### Fix URLs
+### 修复 URL
 
-Before deploying to Vercel, a `vercel.json` file is required at the root of the project directory. It needs to contain the following configuration so that URLs don't require the `.html` extension:
+在部署到 Vercel 前，需要在项目根目录下添加 `vercel.json` 文件，内容如下，以确保 URL 不需要 `.html` 后缀：
 
 ```json title="vercel.json"
 {
@@ -133,56 +133,56 @@ Before deploying to Vercel, a `vercel.json` file is required at the root of the 
 }
 ```
 
-### Deploy to Vercel
+### 部署到 Vercel
 
-1. Log in to the [Vercel Dashboard](https://vercel.com/dashboard) and click "Add New..." > Project
-2. Import the Git repository containing your Quartz project.
-3. Give the project a name (lowercase characters and hyphens only)
-4. Check that these configuration options are set:
+1. 登录 [Vercel 控制台](https://vercel.com/dashboard)，点击 "Add New..." > Project
+2. 导入包含 Quartz 项目的 Git 仓库。
+3. 给项目命名（仅小写字母和连字符）
+4. 检查以下配置项：
 
-| Configuration option                      | Value              |
-| ----------------------------------------- | ------------------ |
-| Framework Preset                          | `Other`            |
-| Root Directory                            | `./`               |
-| Build and Output Settings > Build Command | `npx quartz build` |
+| 配置项                                   | 值                  |
+| ---------------------------------------- | ------------------- |
+| Framework Preset                         | `Other`             |
+| Root Directory                           | `./`                |
+| Build and Output Settings > Build Command| `npx quartz build`  |
 
-5. Press Deploy. Once it's live, you'll have 2 `*.vercel.app` URLs to view the page.
+5. 点击 Deploy。部署完成后，你会获得两个 `*.vercel.app` 的访问地址。
 
-### Custom Domain
+### 自定义域名
 
 > [!note]
-> If there is something already hosted on the domain, these steps will not work without replacing the previous content. As a workaround, you could use Next.js rewrites or use the next section to create a subdomain.
+> 如果该域名已有内容，以下步骤会覆盖原有内容。如需保留原内容，可使用 Next.js 重写或参考下节使用子域名。
 
-1. Update the `baseUrl` in `quartz.config.js` if necessary.
-2. Go to the [Domains - Dashboard](https://vercel.com/dashboard/domains) page in Vercel.
-3. Connect the domain to Vercel
-4. Press "Add" to connect a custom domain to Vercel.
-5. Select your Quartz repository and press Continue.
-6. Enter the domain you want to connect it to.
-7. Follow the instructions to update your DNS records until you see "Valid Configuration"
+1. 如有需要，更新 `quartz.config.js` 中的 `baseUrl`。
+2. 前往 Vercel 的 [Domains - Dashboard](https://vercel.com/dashboard/domains) 页面。
+3. 连接域名到 Vercel。
+4. 点击 "Add" 添加自定义域名。
+5. 选择你的 Quartz 仓库并点击 Continue。
+6. 输入你要绑定的域名。
+7. 按提示更新 DNS 记录，直到显示 "Valid Configuration"。
 
-### Use a Subdomain
+### 使用子域名
 
-Using `docs.example.com` is an example of a subdomain. They're a simple way of connecting multiple deployments to one domain.
+如 `docs.example.com`，子域名可用于将多个部署绑定到同一主域名。
 
-1. Update the `baseUrl` in `quartz.config.js` if necessary.
-2. Ensure your domain has been added to the [Domains - Dashboard](https://vercel.com/dashboard/domains) page in Vercel.
-3. Go to the [Vercel Dashboard](https://vercel.com/dashboard) and select your Quartz project.
-4. Go to the Settings tab and then click Domains in the sidebar
-5. Enter your subdomain into the field and press Add
+1. 如有需要，更新 `quartz.config.js` 中的 `baseUrl`。
+2. 确保你的域名已添加到 Vercel 的 [Domains - Dashboard](https://vercel.com/dashboard/domains)。
+3. 在 [Vercel 控制台](https://vercel.com/dashboard) 选择你的 Quartz 项目。
+4. 进入 Settings 标签页，点击侧边栏的 Domains。
+5. 输入你的子域名并点击 Add。
 
 ## Netlify
 
-1. Log in to the [Netlify dashboard](https://app.netlify.com/) and click "Add new site".
-2. Select your Git provider and repository containing your Quartz project.
-3. Under "Build command", enter `npx quartz build`.
-4. Under "Publish directory", enter `public`.
-5. Press Deploy. Once it's live, you'll have a `*.netlify.app` URL to view the page.
-6. To add a custom domain, check "Domain management" in the left sidebar, just like with Vercel.
+1. 登录 [Netlify 控制台](https://app.netlify.com/)，点击 "Add new site"。
+2. 选择你的 Git 提供商和包含 Quartz 项目的仓库。
+3. 在 "Build command" 输入 `npx quartz build`。
+4. 在 "Publish directory" 输入 `public`。
+5. 点击 Deploy。部署完成后，你会获得一个 `*.netlify.app` 的访问地址。
+6. 如需添加自定义域名，在左侧栏 "Domain management" 进行设置，方法与 Vercel 类似。
 
 ## GitLab Pages
 
-In your local Quartz, create a new file `.gitlab-ci.yml`.
+在本地 Quartz 项目中新建 `.gitlab-ci.yml` 文件。
 
 ```yaml title=".gitlab-ci.yml"
 stages:
@@ -190,7 +190,7 @@ stages:
   - deploy
 
 image: node:20
-cache: # Cache modules in between jobs
+cache: # 缓存依赖
   key: $CI_COMMIT_REF_SLUG
   paths:
     - .npm/
@@ -221,17 +221,17 @@ pages:
       - public
 ```
 
-When `.gitlab-ci.yaml` is committed, GitLab will build and deploy the website as a GitLab Page. You can find the url under `Deploy > Pages` in the sidebar.
+提交 `.gitlab-ci.yaml` 后，GitLab 会自动构建并部署为 GitLab Page。你可以在侧边栏的 `Deploy > Pages` 查看网址。
 
-By default, the page is private and only visible when logged in to a GitLab account with access to the repository but can be opened in the settings under `Deploy` -> `Pages`.
+默认情况下，页面为私有，仅仓库成员可见，可在设置中打开公开访问：`Deploy` -> `Pages`。
 
-## Self-Hosting
+## 自托管
 
-Copy the `public` directory to your web server and configure it to serve the files. You can use any web server to host your site. Since Quartz generates links that do not include the `.html` extension, you need to let your web server know how to deal with it.
+将 `public` 目录复制到你的 Web 服务器，并配置服务器以提供这些文件。Quartz 生成的链接不带 `.html` 后缀，需要让服务器正确处理。
 
-### Using Nginx
+### Nginx 示例
 
-Here's an example of how to do this with Nginx:
+Nginx 配置如下：
 
 ```nginx title="nginx.conf"
 server {
@@ -247,31 +247,31 @@ server {
 }
 ```
 
-### Using Apache
+### Apache 示例
 
-Here's an example of how to do this with Apache:
+Apache 配置如下：
 
 ```apache title=".htaccess"
 RewriteEngine On
 
 ErrorDocument 404 /404.html
 
-# Rewrite rule for .html extension removal (with directory check)
+# 去除 .html 后缀的重写规则（带目录检查）
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_URI}.html -f
 RewriteRule ^(.*)$ $1.html [L]
 
-# Handle directory requests explicitly
+# 显式处理目录请求
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^(.*)/$ $1/index.html [L]
 ```
 
-Don't forget to activate brotli / gzip compression.
+别忘了启用 brotli / gzip 压缩。
 
-### Using Caddy
+### Caddy 示例
 
-Here's and example of how to do this with Caddy:
+Caddy 配置如下：
 
 ```caddy title="Caddyfile"
 example.com {
@@ -286,3 +286,4 @@ example.com {
     }
 }
 ```
+

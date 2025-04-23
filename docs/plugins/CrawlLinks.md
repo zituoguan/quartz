@@ -4,27 +4,27 @@ tags:
   - plugin/transformer
 ---
 
-This plugin parses links and processes them to point to the right places. It is also needed for embedded links (like images). See [[Obsidian compatibility]] for more information.
+该插件解析链接并处理它们以指向正确的位置。它对于嵌入式链接（如图片）也是必需的。更多信息请参见 [[Obsidian compatibility]]。
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> 有关如何添加、移除或配置插件的信息，请参见 [[configuration#Plugins|Configuration]] 页面。
 
-This plugin accepts the following configuration options:
+该插件接受以下配置选项：
 
-- `markdownLinkResolution`: Sets the strategy for resolving Markdown paths, can be `"absolute"` (default), `"relative"` or `"shortest"`. You should use the same setting here as in [[Obsidian compatibility|Obsidian]].
-  - `absolute`: Path relative to the root of the content folder.
-  - `relative`: Path relative to the file you are linking from.
-  - `shortest`: Name of the file. If this isn't enough to identify the file, use the full absolute path.
-- `prettyLinks`: If `true` (default), simplifies links by removing folder paths, making them more user friendly (e.g. `folder/deeply/nested/note` becomes `note`).
-- `openLinksInNewTab`: If `true`, configures external links to open in a new tab. Defaults to `false`.
-- `lazyLoad`: If `true`, adds lazy loading to resource elements (`img`, `video`, etc.) to improve page load performance. Defaults to `false`.
-- `externalLinkIcon`: Adds an icon next to external links when `true` (default) to visually distinguishing them from internal links.
+- `markdownLinkResolution`：设置解析 Markdown 路径的策略，可选值为 `"absolute"`（默认）、`"relative"` 或 `"shortest"`。建议与 [[Obsidian compatibility|Obsidian]] 中的设置保持一致。
+  - `absolute`：相对于内容文件夹根目录的路径。
+  - `relative`：相对于当前链接文件的路径。
+  - `shortest`：文件名。如果文件名不足以唯一标识文件，则使用完整的绝对路径。
+- `prettyLinks`：如果为 `true`（默认），则通过移除文件夹路径简化链接，使其更易读（例如 `folder/deeply/nested/note` 变为 `note`）。
+- `openLinksInNewTab`：如果为 `true`，则将外部链接配置为在新标签页中打开。默认为 `false`。
+- `lazyLoad`：如果为 `true`，则为资源元素（如 `img`、`video` 等）添加懒加载，以提升页面加载性能。默认为 `false`。
+- `externalLinkIcon`：为外部链接添加图标（默认为 `true`），以便与内部链接区分。
 
 > [!warning]
-> Removing this plugin is _not_ recommended and will likely break the page.
+> 不建议移除此插件，否则页面可能无法正常工作。
 
 ## API
 
-- Category: Transformer
-- Function name: `Plugin.CrawlLinks()`.
-- Source: [`quartz/plugins/transformers/links.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/links.ts).
+- 分类：Transformer
+- 函数名：`Plugin.CrawlLinks()`。
+- 源码：[quartz/plugins/transformers/links.ts](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/links.ts)。

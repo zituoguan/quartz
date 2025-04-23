@@ -4,18 +4,18 @@ tags:
   - plugin/emitter
 ---
 
-This plugin emits all static resources needed by Quartz. This is used, for example, for fonts and images that need a stable position, such as banners and icons. The plugin respects the `ignorePatterns` in the global [[configuration]].
+该插件会发出 Quartz 所需的所有静态资源。例如，用于需要固定位置的字体和图片（如横幅和图标）。该插件会遵循全局 [[configuration]] 中的 `ignorePatterns` 配置。
 
 > [!important]
-> This is different from [[Assets]]. The resources from the [[Static]] plugin are located under `quartz/static`, whereas [[Assets]] renders all static resources under `content` and is used for images, videos, audio, etc. that are directly referenced by your markdown content.
+> 这与 [[Assets]] 不同。[[Static]] 插件的资源位于 `quartz/static` 下，而 [[Assets]] 会渲染所有位于 `content` 下的静态资源，适用于你的 Markdown 内容中直接引用的图片、视频、音频等。
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> 有关如何添加、移除或配置插件的信息，请参见 [[configuration#Plugins|配置]] 页面。
 
-This plugin has no configuration options.
+该插件没有配置选项。
 
 ## API
 
-- Category: Emitter
-- Function name: `Plugin.Static()`.
-- Source: [`quartz/plugins/emitters/static.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/static.ts).
+- 分类：Emitter
+- 函数名：`Plugin.Static()`
+- 源码：[`quartz/plugins/emitters/static.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/emitters/static.ts)

@@ -1,72 +1,72 @@
 ---
-title: "Frontmatter"
+title: "Frontmatter（前言信息）"
 tags:
   - plugin/transformer
 ---
 
-This plugin parses the frontmatter of the page using the [gray-matter](https://github.com/jonschlinkert/gray-matter) library. See [[authoring content#Syntax]], [[Obsidian compatibility]] and [[OxHugo compatibility]] for more information.
+该插件使用 [gray-matter](https://github.com/jonschlinkert/gray-matter) 库解析页面的 frontmatter（前言信息）。更多信息请参见 [[authoring content#Syntax]]、[[Obsidian compatibility]] 和 [[OxHugo compatibility]]。
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> 有关如何添加、移除或配置插件的信息，请参见 [[configuration#Plugins|配置]] 页面。
 
-This plugin accepts the following configuration options:
+该插件接受以下配置选项：
 
-- `delimiters`: the delimiters to use for the frontmatter. Can have one value (e.g. `"---"`) or separate values for opening and closing delimiters (e.g. `["---", "~~~"]`). Defaults to `"---"`.
-- `language`: the language to use for parsing the frontmatter. Can be `yaml` (default) or `toml`.
+- `delimiters`：用于 frontmatter 的分隔符。可以是一个值（如 `"---"`），也可以为起始和结束分隔符分别指定不同的值（如 `["---", "~~~"]`）。默认为 `"---"`。
+- `language`：用于解析 frontmatter 的语言。可选 `yaml`（默认）或 `toml`。
 
 > [!warning]
-> This plugin must not be removed, otherwise Quartz will break.
+> 不可移除此插件，否则 Quartz 将无法正常工作。
 
-## List
+## 支持的 Frontmatter 列表
 
-Quartz supports the following frontmatter:
+Quartz 支持以下 frontmatter 字段：
 
-- title
+- 标题
   - `title`
-- description
+- 描述
   - `description`
-- permalink
+- 固定链接
   - `permalink`
-- comments
+- 评论
   - `comments`
-- lang
+- 语言
   - `lang`
-- publish
+- 发布
   - `publish`
-- draft
+- 草稿
   - `draft`
-- enableToc
+- 启用目录
   - `enableToc`
-- tags
+- 标签
   - `tags`
   - `tag`
-- aliases
+- 别名
   - `aliases`
   - `alias`
-- cssclasses
+- CSS 类
   - `cssclasses`
   - `cssclass`
-- socialDescription
+- 社交描述
   - `socialDescription`
-- socialImage
+- 社交图片
   - `socialImage`
   - `image`
   - `cover`
-- created
+- 创建时间
   - `created`
   - `date`
-- modified
+- 修改时间
   - `modified`
   - `lastmod`
   - `updated`
   - `last-modified`
-- published
+- 发布时间
   - `published`
   - `publishDate`
   - `date`
 
 ## API
 
-- Category: Transformer
-- Function name: `Plugin.Frontmatter()`.
-- Source: [`quartz/plugins/transformers/frontmatter.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/frontmatter.ts).
+- 分类：Transformer
+- 函数名：`Plugin.Frontmatter()`
+- 源码：[quartz/plugins/transformers/frontmatter.ts](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/frontmatter.ts)

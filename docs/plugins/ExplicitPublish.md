@@ -4,15 +4,16 @@ tags:
   - plugin/filter
 ---
 
-This plugin filters content based on an explicit `publish` flag in the frontmatter, allowing only content that is explicitly marked for publication to pass through. It's the opt-in version of [[RemoveDrafts]]. See [[private pages]] for more information.
+该插件根据 frontmatter 中的显式 `publish` 标志过滤内容，仅允许明确标记为发布的内容通过。这是 [[RemoveDrafts]] 的“选择加入”版本。更多信息请参见 [[private pages]]。
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> 有关如何添加、移除或配置插件的信息，请参见 [[configuration#Plugins|配置]] 页面。
 
-This plugin has no configuration options.
+该插件没有配置选项。
 
 ## API
 
-- Category: Filter
-- Function name: `Plugin.ExplicitPublish()`.
-- Source: [`quartz/plugins/filters/explicit.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/filters/explicit.ts).
+- 分类：过滤器
+- 函数名：`Plugin.ExplicitPublish()`
+- 源码：[quartz/plugins/filters/explicit.ts](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/filters/explicit.ts)
+

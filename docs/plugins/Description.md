@@ -4,20 +4,20 @@ tags:
   - plugin/transformer
 ---
 
-This plugin generates descriptions that are used as metadata for the HTML `head`, the [[RSS Feed]] and in [[folder and tag listings]] if there is no main body content, the description is used as the text between the title and the listing.
+该插件会生成用于 HTML `head` 元数据、[[RSS Feed]] 以及 [[文件夹和标签列表]] 的描述。如果没有正文内容，描述将作为标题和列表之间的文本显示。
 
-If the frontmatter contains a `description` property, it is used (see [[authoring content#Syntax]]). Otherwise, the plugin will do its best to use the first few sentences of the content to reach the target description length.
+如果 frontmatter 中包含 `description` 属性，则会优先使用该属性（参见 [[authoring content#Syntax]]）。否则，插件会尽量使用内容的前几句话来达到目标描述长度。
 
 > [!note]
-> For information on how to add, remove or configure plugins, see the [[configuration#Plugins|Configuration]] page.
+> 有关如何添加、移除或配置插件的信息，请参阅 [[configuration#Plugins|配置]] 页面。
 
-This plugin accepts the following configuration options:
+该插件支持以下配置选项：
 
-- `descriptionLength`: the maximum length of the generated description. Default is 150 characters. The cut off happens after the first _sentence_ that ends after the given length.
-- `replaceExternalLinks`: If `true` (default), replace external links with their domain and path in the description (e.g. `https://domain.tld/some_page/another_page?query=hello&target=world` is replaced with `domain.tld/some_page/another_page`).
+- `descriptionLength`：生成描述的最大长度，默认为 150 个字符。截断会在第一个超过该长度的句子后进行。
+- `replaceExternalLinks`：如果为 `true`（默认），则会将描述中的外部链接替换为其域名和路径（例如 `https://domain.tld/some_page/another_page?query=hello&target=world` 会被替换为 `domain.tld/some_page/another_page`）。
 
 ## API
 
-- Category: Transformer
-- Function name: `Plugin.Description()`.
-- Source: [`quartz/plugins/transformers/description.ts`](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/description.ts).
+- 分类：Transformer
+- 函数名：`Plugin.Description()`。
+- 源码：[quartz/plugins/transformers/description.ts](https://github.com/jackyzha0/quartz/blob/v4/quartz/plugins/transformers/description.ts)。
