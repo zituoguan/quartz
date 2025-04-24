@@ -1,15 +1,15 @@
 ---
-title: Making your own plugins
+title: 制作你自己的插件
 ---
 
 > [!warning]
-> This part of the documentation will assume you have working knowledge in TypeScript and will include code snippets that describe the interface of what Quartz plugins should look like.
+> 本部分文档假设你已经具备 TypeScript 的使用经验，并将包含描述 Quartz 插件接口的代码片段。
 
-Quartz's plugins are a series of transformations over content. This is illustrated in the diagram of the processing pipeline below:
+Quartz 的插件是一系列对内容进行转换的操作。下图展示了处理流程管道：
 
 ![[quartz transform pipeline.png]]
 
-All plugins are defined as a function that takes in a single parameter for options `type OptionType = object | undefined` and return an object that corresponds to the type of plugin it is.
+所有插件都定义为一个函数，接收一个选项参数 `type OptionType = object | undefined`，并返回一个与插件类型对应的对象。
 
 ```ts
 type OptionType = object | undefined
@@ -20,20 +20,20 @@ type QuartzPluginInstance =
   | QuartzEmitterPluginInstance
 ```
 
-The following sections will go into detail for what methods can be implemented for each plugin type. Before we do that, let's clarify a few more ambiguous types:
+接下来的章节将详细介绍每种插件类型可以实现的方法。在此之前，先澄清几个类型：
 
-- `BuildCtx` is defined in `quartz/ctx.ts`. It consists of
-  - `argv`: The command line arguments passed to the Quartz [[build]] command
-  - `cfg`: The full Quartz [[configuration]]
-  - `allSlugs`: a list of all the valid content slugs (see [[paths]] for more information on what a slug is)
-- `StaticResources` is defined in `quartz/resources.tsx`. It consists of
-  - `css`: a list of CSS style definitions that should be loaded. A CSS style is described with the `CSSResource` type which is also defined in `quartz/resources.tsx`. It accepts either a source URL or the inline content of the stylesheet.
-  - `js`: a list of scripts that should be loaded. A script is described with the `JSResource` type which is also defined in `quartz/resources.tsx`. It allows you to define a load time (either before or after the DOM has been loaded), whether it should be a module, and either the source URL or the inline content of the script.
-  - `additionalHead`: a list of JSX elements or functions that return JSX elements to be added to the `<head>` tag of the page. Functions receive the page's data as an argument and can conditionally render elements.
+- `BuildCtx` 定义在 `quartz/ctx.ts`，包含：
+  - `argv`：传递给 Quartz [[build]] 命令的命令行参数
+  - `cfg`：完整的 Quartz [[configuration]]
+  - `allSlugs`：所有有效内容 slug 的列表（关于 slug 详见 [[paths]]）
+- `StaticResources` 定义在 `quartz/resources.tsx`，包含：
+  - `css`：需要加载的 CSS 样式定义列表。CSS 样式由 `CSSResource` 类型描述，也定义在 `quartz/resources.tsx`，可接受源 URL 或样式表的内联内容。
+  - `js`：需要加载的脚本列表。脚本由 `JSResource` 类型描述，也定义在 `quartz/resources.tsx`，可定义加载时机（DOM 加载前或后）、是否为模块，以及源 URL 或脚本的内联内容。
+  - `additionalHead`：要添加到页面 `<head>` 标签的 JSX 元素或返回 JSX 元素的函数列表。函数接收页面数据作为参数，可有条件地渲染元素。
 
-## Transformers
+## 转换器（Transformers）
 
-Transformers **map** over content, taking a Markdown file and outputting modified content or adding metadata to the file itself.
+转换器对内容进行**映射**，接收 Markdown 文件并输出修改后的内容或为文件添加元数据。
 
 ```ts
 export type QuartzTransformerPluginInstance = {
@@ -45,16 +45,16 @@ export type QuartzTransformerPluginInstance = {
 }
 ```
 
-All transformer plugins must define at least a `name` field to register the plugin and a few optional functions that allow you to hook into various parts of transforming a single Markdown file.
+所有转换器插件必须至少定义一个 `name` 字段用于注册插件，还可以实现一些可选函数，用于在转换单个 Markdown 文件的不同阶段进行操作。
 
-- `textTransform` performs a text-to-text transformation _before_ a file is parsed into the [Markdown AST](https://github.com/syntax-tree/mdast).
-- `markdownPlugins` defines a list of [remark plugins](https://github.com/remarkjs/remark/blob/main/doc/plugins.md). `remark` is a tool that transforms Markdown to Markdown in a structured way.
-- `htmlPlugins` defines a list of [rehype plugins](https://github.com/rehypejs/rehype/blob/main/doc/plugins.md). Similar to how `remark` works, `rehype` is a tool that transforms HTML to HTML in a structured way.
-- `externalResources` defines any external resources the plugin may need to load on the client-side for it to work properly.
+- `textTransform` 在文件被解析为 [Markdown AST](https://github.com/syntax-tree/mdast) 之前执行文本到文本的转换。
+- `markdownPlugins` 定义 [remark 插件](https://github.com/remarkjs/remark/blob/main/doc/plugins.md) 列表。`remark` 是一个以结构化方式将 Markdown 转换为 Markdown 的工具。
+- `htmlPlugins` 定义 [rehype 插件](https://github.com/rehypejs/rehype/blob/main/doc/plugins.md) 列表。`rehype` 以结构化方式将 HTML 转换为 HTML。
+- `externalResources` 定义插件在客户端正常工作所需加载的外部资源。
 
-Normally for both `remark` and `rehype`, you can find existing plugins that you can use to . If you'd like to create your own `remark` or `rehype` plugin, checkout the [guide to creating a plugin](https://unifiedjs.com/learn/guide/create-a-plugin/) using `unified` (the underlying AST parser and transformer library).
+通常对于 `remark` 和 `rehype`，你可以找到现成的插件。如果你想自己创建 `remark` 或 `rehype` 插件，请参考 [创建插件指南](https://unifiedjs.com/learn/guide/create-a-plugin/)（基于 unified AST 解析和转换库）。
 
-A good example of a transformer plugin that borrows from the `remark` and `rehype` ecosystems is the [[plugins/Latex|Latex]] plugin:
+一个结合了 `remark` 和 `rehype` 生态的转换器插件示例是 [[plugins/Latex|Latex]] 插件：
 
 ```ts title="quartz/plugins/transformers/latex.ts"
 import remarkMath from "remark-math"
@@ -75,8 +75,7 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
     },
     htmlPlugins() {
       if (engine === "katex") {
-        // if you need to pass options into a plugin, you
-        // can use a tuple of [plugin, options]
+        // 如果需要向插件传递参数，可以使用 [plugin, options] 元组
         return [[rehypeKatex, { output: "html" }]]
       } else {
         return [rehypeMathjax]
@@ -87,13 +86,13 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
         return {
           css: [
             {
-              // base css
+              // 基础 css
               content: "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css",
             },
           ],
           js: [
             {
-              // fix copy behaviour: https://github.com/KaTeX/KaTeX/blob/main/contrib/copy-tex/README.md
+              // 修复复制行为：https://github.com/KaTeX/KaTeX/blob/main/contrib/copy-tex/README.md
               src: "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js",
               loadTime: "afterDOMReady",
               contentType: "external",
@@ -106,7 +105,7 @@ export const Latex: QuartzTransformerPlugin<Options> = (opts?: Options) => {
 }
 ```
 
-Another common thing that transformer plugins will do is parse a file and add extra data for that file:
+另一个常见的转换器插件功能是解析文件并为其添加额外数据：
 
 ```ts
 export const AddWordCount: QuartzTransformerPlugin = () => {
@@ -116,8 +115,8 @@ export const AddWordCount: QuartzTransformerPlugin = () => {
       return [
         () => {
           return (tree, file) => {
-            // tree is an `mdast` root element
-            // file is a `vfile`
+            // tree 是 mdast 根元素
+            // file 是 vfile
             const text = file.value
             const words = text.split(" ").length
             file.data.wordcount = words
@@ -128,8 +127,8 @@ export const AddWordCount: QuartzTransformerPlugin = () => {
   }
 }
 
-// tell typescript about our custom data fields we are adding
-// other plugins will then also be aware of this data field
+// 告诉 typescript 我们添加了自定义数据字段
+// 其他插件也会识别这个数据字段
 declare module "vfile" {
   interface DataMap {
     wordcount: number
@@ -137,7 +136,7 @@ declare module "vfile" {
 }
 ```
 
-Finally, you can also perform transformations over Markdown or HTML ASTs using the `visit` function from the `unist-util-visit` package or the `findAndReplace` function from the `mdast-util-find-and-replace` package.
+你还可以使用 `unist-util-visit` 包的 `visit` 函数或 `mdast-util-find-and-replace` 包的 `findAndReplace` 函数对 Markdown 或 HTML AST 进行转换。
 
 ```ts
 export const TextTransforms: QuartzTransformerPlugin = () => {
@@ -146,11 +145,11 @@ export const TextTransforms: QuartzTransformerPlugin = () => {
     markdownPlugins() {
       return [() => {
         return (tree, file) => {
-          // replace _text_ with the italics version
+          // 用斜体替换 _text_
           findAndReplace(tree, /_(.+)_/, (_value: string, ...capture: string[]) => {
-            // inner is the text inside of the () of the regex
+            // inner 是正则 () 内的文本
             const [inner] = capture
-            // return an mdast node
+            // 返回 mdast 节点
             // https://github.com/syntax-tree/mdast
             return {
               type: "emphasis",
@@ -158,9 +157,9 @@ export const TextTransforms: QuartzTransformerPlugin = () => {
             }
           })
 
-         // remove all links (replace with just the link content)
-         // match by 'type' field on an mdast node
-         // https://github.com/syntax-tree/mdast#link in this example
+         // 移除所有链接（仅保留链接内容）
+         // 通过 mdast 节点的 'type' 字段匹配
+         // https://github.com/syntax-tree/mdast#link
           visit(tree, "link", (link: Link) => {
             return {
               type: "paragraph"
@@ -174,13 +173,13 @@ export const TextTransforms: QuartzTransformerPlugin = () => {
 }
 ```
 
-All transformer plugins can be found under `quartz/plugins/transformers`. If you decide to write your own transformer plugin, don't forget to re-export it under `quartz/plugins/transformers/index.ts`
+所有转换器插件都位于 `quartz/plugins/transformers`。如果你编写了自己的转换器插件，别忘了在 `quartz/plugins/transformers/index.ts` 重新导出它。
 
-A parting word: transformer plugins are quite complex so don't worry if you don't get them right away. Take a look at the built in transformers and see how they operate over content to get a better sense for how to accomplish what you are trying to do.
+最后提醒一句：转换器插件较为复杂，如果一时没弄明白也不用担心。可以参考内置转换器，看看它们是如何处理内容的，从而更好地实现你的需求。
 
-## Filters
+## 过滤器（Filters）
 
-Filters **filter** content, taking the output of all the transformers and determining what files to actually keep and what to discard.
+过滤器对内容进行**筛选**，接收所有转换器的输出，决定实际保留哪些文件、丢弃哪些文件。
 
 ```ts
 export type QuartzFilterPlugin<Options extends OptionType = undefined> = (
@@ -193,9 +192,9 @@ export type QuartzFilterPluginInstance = {
 }
 ```
 
-A filter plugin must define a `name` field and a `shouldPublish` function that takes in a piece of content that has been processed by all the transformers and returns a `true` or `false` depending on whether it should be passed to the emitter plugins or not.
+过滤器插件必须定义 `name` 字段和 `shouldPublish` 函数，后者接收经过所有转换器处理的内容，根据是否应传递给发射器插件返回 `true` 或 `false`。
 
-For example, here is the built-in plugin for removing drafts:
+例如，以下是内置的移除草稿插件：
 
 ```ts title="quartz/plugins/filters/draft.ts"
 import { QuartzFilterPlugin } from "../types"
@@ -203,16 +202,16 @@ import { QuartzFilterPlugin } from "../types"
 export const RemoveDrafts: QuartzFilterPlugin<{}> = () => ({
   name: "RemoveDrafts",
   shouldPublish(_ctx, [_tree, vfile]) {
-    // uses frontmatter parsed from transformers
+    // 使用转换器解析的 frontmatter
     const draftFlag: boolean = vfile.data?.frontmatter?.draft ?? false
     return !draftFlag
   },
 })
 ```
 
-## Emitters
+## 发射器（Emitters）
 
-Emitters **reduce** over content, taking in a list of all the transformed and filtered content and creating output files.
+发射器对内容进行**归约**，接收所有转换和筛选后的内容，生成输出文件。
 
 ```ts
 export type QuartzEmitterPlugin<Options extends OptionType = undefined> = (
@@ -236,40 +235,40 @@ export type QuartzEmitterPluginInstance = {
 }
 ```
 
-An emitter plugin must define a `name` field, an `emit` function, and a `getQuartzComponents` function. It can optionally implement a `partialEmit` function for incremental builds.
+发射器插件必须定义 `name` 字段、`emit` 函数和 `getQuartzComponents` 函数。可选实现 `partialEmit`，用于增量构建。
 
-- `emit` is responsible for looking at all the parsed and filtered content and then appropriately creating files and returning a list of paths to files the plugin created.
-- `partialEmit` is an optional function that enables incremental builds. It receives information about which files have changed (`changeEvents`) and can selectively rebuild only the necessary files. This is useful for optimizing build times in development mode. If `partialEmit` is undefined, it will default to the `emit` function.
-- `getQuartzComponents` declares which Quartz components the emitter uses to construct its pages.
+- `emit` 负责处理所有解析和筛选后的内容，生成文件并返回创建的文件路径列表。
+- `partialEmit` 是可选函数，支持增量构建。它接收变更文件信息（`changeEvents`），可选择性地只重建必要文件。若未定义，则默认使用 `emit`。
+- `getQuartzComponents` 声明发射器用于构建页面的 Quartz 组件。
 
-Creating new files can be done via regular Node [fs module](https://nodejs.org/api/fs.html) (i.e. `fs.cp` or `fs.writeFile`) or via the `write` function in `quartz/plugins/emitters/helpers.ts` if you are creating files that contain text. `write` has the following signature:
+创建新文件可以使用 Node 的 [fs 模块](https://nodejs.org/api/fs.html)（如 `fs.cp` 或 `fs.writeFile`），也可以用 `quartz/plugins/emitters/helpers.ts` 中的 `write` 函数。`write` 的签名如下：
 
 ```ts
 export type WriteOptions = (data: {
-  // the build context
+  // 构建上下文
   ctx: BuildCtx
-  // the name of the file to emit (not including the file extension)
+  // 要生成的文件名（不含扩展名）
   slug: FullSlug
-  // the file extension
+  // 文件扩展名
   ext: `.${string}` | ""
-  // the file content to add
+  // 要写入的文件内容
   content: string
 }) => Promise<FilePath>
 ```
 
-This is a thin wrapper around writing to the appropriate output folder and ensuring that intermediate directories exist. If you choose to use the native Node `fs` APIs, ensure you emit to the `argv.output` folder as well.
+这是对写入输出文件夹的简单封装，并确保中间目录存在。如果你选择使用原生 Node fs API，也要确保输出到 `argv.output` 文件夹。
 
-If you are creating an emitter plugin that needs to render components, there are three more things to be aware of:
+如果你创建的发射器插件需要渲染组件，还需注意三点：
 
-- Your component should use `getQuartzComponents` to declare a list of `QuartzComponents` that it uses to construct the page. See the page on [[creating components]] for more information.
-- You can use the `renderPage` function defined in `quartz/components/renderPage.tsx` to render Quartz components into HTML.
-- If you need to render an HTML AST to JSX, you can use the `htmlToJsx` function from `quartz/util/jsx.ts`. An example of this can be found in `quartz/components/pages/Content.tsx`.
+- 组件应通过 `getQuartzComponents` 声明所用的 `QuartzComponents`。详见 [[creating components]]。
+- 可用 `quartz/components/renderPage.tsx` 的 `renderPage` 函数将 Quartz 组件渲染为 HTML。
+- 若需将 HTML AST 渲染为 JSX，可用 `quartz/util/jsx.ts` 的 `htmlToJsx` 函数，示例见 `quartz/components/pages/Content.tsx`。
 
-For example, the following is a simplified version of the content page plugin that renders every single page.
+例如，以下是简化版的内容页面插件，会渲染每个页面：
 
 ```tsx title="quartz/plugins/emitters/contentPage.tsx"
 export const ContentPage: QuartzEmitterPlugin = () => {
-  // construct the layout
+  // 构建布局
   const layout: FullPageLayout = {
     ...sharedPageComponents,
     ...defaultContentPageLayout,
@@ -312,7 +311,8 @@ export const ContentPage: QuartzEmitterPlugin = () => {
 }
 ```
 
-Note that it takes in a `FullPageLayout` as the options. It's made by combining a `SharedLayout` and a `PageLayout` both of which are provided through the `quartz.layout.ts` file.
+注意它接收 `FullPageLayout` 作为选项。它由 `SharedLayout` 和 `PageLayout` 组合而成，二者都在 `quartz.layout.ts` 文件中提供。
 
 > [!hint]
-> Look in `quartz/plugins` for more examples of plugins in Quartz as reference for your own plugins!
+> 更多插件示例可参考 `quartz/plugins`，以便为你自己的插件提供参考！
+
