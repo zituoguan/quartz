@@ -1,5 +1,5 @@
 ---
-title: "构建你的 Quartz"
+title: 04 构建你的 Quartz
 ---
 
 一旦你已经[[index#🪴 Get Started|初始化]]了 Quartz，让我们看看它在本地的效果：

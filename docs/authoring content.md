@@ -1,5 +1,5 @@
 ---
-title: 内容创作
+title: 01 内容创作
 ---
 
 你所有的 Quartz 内容都应放在 `/content` 文件夹中。Quartz 首页的内容位于 `content/index.md`。如果你已经[[index#🪴 Get Started|完成了 Quartz 的设置]]，这个文件夹应该已经初始化。该文件夹中的任何 Markdown 文件都会被 Quartz 处理。

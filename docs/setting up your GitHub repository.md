@@ -1,5 +1,5 @@
 ---
-title: 设置你的 GitHub 仓库
+title: 05 设置你的 GitHub 仓库
 ---
 
 首先，确保你已经将 Quartz [[index#🪴 Get Started|克隆并在本地设置]]。

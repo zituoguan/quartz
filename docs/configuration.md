@@ -1,5 +1,5 @@
 ---
-title: 配置
+title: 02 配置
 ---
 
 Quartz 旨在实现极高的可配置性，即使你不会编程也能轻松上手。大多数配置只需编辑 `quartz.config.ts` 或在 `quartz.layout.ts` 中更改 [[layout|布局]] 即可完成。

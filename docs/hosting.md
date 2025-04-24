@@ -1,5 +1,5 @@
 ---
-title: 托管
+title: 06 托管
 ---
 
 Quartz 可以将你的 Markdown 文件和其他资源高效地打包为 HTML、JS 和 CSS 文件（即一个网站！）。

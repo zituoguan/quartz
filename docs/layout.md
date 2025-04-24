@@ -1,5 +1,5 @@
 ---
-title: 布局
+title: 03 布局
 ---
 
 某些发射器（emitters）也可以输出 [HTML](https://developer.mozilla.org/zh-CN/docs/Web/HTML) 文件。为了便于自定义，这些发射器允许你完全重新排列页面布局。默认的页面布局可以在 `quartz.layout.ts` 中找到。
