@@ -1,5 +1,5 @@
 ---
-title: Obsidian风格Markdown
+title: ObsidianFlavoredMarkdown
 tags:
   - plugin/transformer
 ---
