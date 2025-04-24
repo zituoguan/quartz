@@ -7,7 +7,7 @@ Quartz 可以将你的 Markdown 文件和其他资源高效地打包为 HTML、J
 不过，如果你想让全世界都能访问你的网站，你需要将其托管到线上。本指南将详细介绍如何使用常见的托管服务进行部署，但任何支持静态 HTML 部署的服务都可以使用。
 
 > [!warning]
-> 本指南假设你已经为 Quartz 创建了自己的 GitHub 仓库。如果还没有，请先[[设置你的 GitHub 仓库|完成这一步]]。
+> 本指南假设你已经为 Quartz 创建了自己的 GitHub 仓库。如果还没有，请先[[setting up your GitHub repository|完成这一步]]。
 
 > [!hint]
 > 某些 Quartz 功能（如 [[RSS Feed]] 和站点地图生成）需要在 [[configuration]] 中正确配置 `baseUrl`。请在部署前设置好！
