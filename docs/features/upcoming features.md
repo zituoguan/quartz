@@ -2,11 +2,12 @@
 draft: true
 ---
 
-## misc backlog
+## 杂项待办
 
-- static dead link detection
-- cursor chat extension
-- sidenotes? https://github.com/capnfabs/paperesque
-- direct match in search using double quotes
+- 静态死链检测
+- 光标聊天扩展
+- 旁注？https://github.com/capnfabs/paperesque
+- 使用双引号进行精确搜索
 - https://help.obsidian.md/Advanced+topics/Using+Obsidian+URI
-- Canvas
+- 画布（Canvas）
+

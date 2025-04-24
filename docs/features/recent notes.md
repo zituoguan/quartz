@@ -1,17 +1,18 @@
 ---
-title: Recent Notes
+title: 最近笔记
 tags: component
 ---
 
-Quartz can generate a list of recent notes based on some filtering and sorting criteria. Though this component isn't included in any [[layout]] by default, you can add it by using `Component.RecentNotes` in `quartz.layout.ts`.
+Quartz 可以根据一些筛选和排序条件生成最近笔记的列表。虽然该组件默认未包含在任何 [[layout]] 中，但你可以在 `quartz.layout.ts` 中通过使用 `Component.RecentNotes` 添加它。
 
-## Customization
+## 自定义
 
-- Changing the title from "Recent notes": pass in an additional parameter to `Component.RecentNotes({ title: "Recent writing" })`
-- Changing the number of recent notes: pass in an additional parameter to `Component.RecentNotes({ limit: 5 })`
-- Display the note's tags (defaults to true): `Component.RecentNotes({ showTags: false })`
-- Show a 'see more' link: pass in an additional parameter to `Component.RecentNotes({ linkToMore: "tags/components" })`. This field should be a full slug to a page that exists.
-- Customize filtering: pass in an additional parameter to `Component.RecentNotes({ filter: someFilterFunction })`. The filter function should be a function that has the signature `(f: QuartzPluginData) => boolean`.
-- Customize sorting: pass in an additional parameter to `Component.RecentNotes({ sort: someSortFunction })`. By default, Quartz will sort by date and then tie break lexographically. The sort function should be a function that has the signature `(f1: QuartzPluginData, f2: QuartzPluginData) => number`. See `byDateAndAlphabetical` in `quartz/components/PageList.tsx` for an example.
-- Component: `quartz/components/RecentNotes.tsx`
-- Style: `quartz/components/styles/recentNotes.scss`
+- 更改标题（默认为“最近笔记”）：传递额外参数 `Component.RecentNotes({ title: "最近写作" })`
+- 更改最近笔记数量：传递额外参数 `Component.RecentNotes({ limit: 5 })`
+- 是否显示笔记标签（默认为 true）：`Component.RecentNotes({ showTags: false })`
+- 显示“查看更多”链接：传递额外参数 `Component.RecentNotes({ linkToMore: "tags/components" })`。该字段应为已存在页面的完整 slug。
+- 自定义筛选：传递额外参数 `Component.RecentNotes({ filter: someFilterFunction })`。筛选函数应具有签名 `(f: QuartzPluginData) => boolean`。
+- 自定义排序：传递额外参数 `Component.RecentNotes({ sort: someSortFunction })`。默认情况下，Quartz 会按日期排序并在有相同日期时按字母顺序排序。排序函数应具有签名 `(f1: QuartzPluginData, f2: QuartzPluginData) => number`。可参考 `quartz/components/PageList.tsx` 中的 `byDateAndAlphabetical` 示例。
+- 组件文件：`quartz/components/RecentNotes.tsx`
+- 样式文件：`quartz/components/styles/recentNotes.scss`
+

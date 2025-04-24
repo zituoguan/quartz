@@ -1,17 +1,18 @@
 ---
-title: "Obsidian Compatibility"
+title: "Obsidian 兼容性"
 tags:
   - feature/transformer
 ---
 
-Quartz was originally designed as a tool to publish Obsidian vaults as websites. Even as the scope of Quartz has widened over time, it hasn't lost the ability to seamlessly interoperate with Obsidian.
+Quartz 最初被设计为一个将 Obsidian 笔记库发布为网站的工具。即使随着 Quartz 的功能范围不断扩大，它依然能够与 Obsidian 无缝协作。
 
-By default, Quartz ships with the [[ObsidianFlavoredMarkdown]] plugin, which is a transformer plugin that adds support for [Obsidian Flavored Markdown](https://help.obsidian.md/Editing+and+formatting/Obsidian+Flavored+Markdown). This includes support for features like [[wikilinks]] and [[Mermaid diagrams]].
+默认情况下，Quartz 内置了 [[ObsidianFlavoredMarkdown]] 插件，这是一个转换器插件，为 [Obsidian Flavored Markdown](https://help.obsidian.md/Editing+and+formatting/Obsidian+Flavored+Markdown) 提供支持。这包括对 [[wikilinks]] 和 [[Mermaid diagrams]] 等功能的支持。
 
-It also ships with support for [frontmatter parsing](https://help.obsidian.md/Editing+and+formatting/Properties) with the same fields that Obsidian uses through the [[Frontmatter]] transformer plugin.
+它还内置了对 [frontmatter 解析](https://help.obsidian.md/Editing+and+formatting/Properties) 的支持，通过 [[Frontmatter]] 转换器插件，支持与 Obsidian 相同的字段。
 
-Finally, Quartz also provides [[CrawlLinks]] plugin, which allows you to customize Quartz's link resolution behaviour to match Obsidian.
+最后，Quartz 还提供了 [[CrawlLinks]] 插件，可以自定义 Quartz 的链接解析行为，使其与 Obsidian 保持一致。
 
-## Configuration
+## 配置
 
-This functionality is provided by the [[ObsidianFlavoredMarkdown]], [[Frontmatter]] and [[CrawlLinks]] plugins. See the plugin pages for customization options.
+这些功能由 [[ObsidianFlavoredMarkdown]]、[[Frontmatter]] 和 [[CrawlLinks]] 插件提供。有关自定义选项，请参阅各插件页面。
+

@@ -1,14 +1,14 @@
 ---
-title: Citations
+title: 引用
 tags:
   - feature/transformer
 ---
 
-Quartz uses [rehype-citation](https://github.com/timlrx/rehype-citation) to support parsing of a BibTex bibliography file.
+Quartz 使用 [rehype-citation](https://github.com/timlrx/rehype-citation) 来支持解析 BibTex 参考文献文件。
 
-Under the default configuration, a citation key `[@templeton2024scaling]` will be exported as `(Templeton et al., 2024)`.
+在默认配置下，引用键 `[@templeton2024scaling]` 会被导出为 `(Templeton 等, 2024)`。
 
-> [!example]- BibTex file
+> [!example]- BibTex 文件
 >
 > ```bib title="bibliography.bib"
 > @article{templeton2024scaling,
@@ -20,12 +20,12 @@ Under the default configuration, a citation key `[@templeton2024scaling]` will b
 > }
 > ```
 
-> [!note] Behaviour of references
+> [!note] 参考文献的行为
 >
-> By default, the references will be included at the end of the file. To control where the references to be included, uses `[^ref]`
+> 默认情况下，参考文献会被包含在文件末尾。要控制参考文献插入的位置，请使用 `[^ref]`
 >
-> Refer to `rehype-citation` docs for more information.
+> 更多信息请参考 `rehype-citation` 文档。
 
-## Customization
+## 自定义
 
-Citation parsing is a functionality of the [[plugins/Citations|Citation]] plugin. **This plugin is not enabled by default**. See the plugin page for customization options.
+引用解析是 [[plugins/Citations|Citation]] 插件的功能。**该插件默认未启用**。自定义选项请参见插件页面。

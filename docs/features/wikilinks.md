@@ -1,24 +1,25 @@
 ---
-title: Wikilinks
+title: 维基链接
 ---
 
-Wikilinks were pioneered by earlier internet wikis to make it easier to write links across pages without needing to write Markdown or HTML links each time.
+维基链接最早由早期的互联网维基提出，使得在页面之间编写链接更加方便，无需每次都书写 Markdown 或 HTML 链接。
 
-Quartz supports Wikilinks by default and these links are resolved by Quartz using the [[CrawlLinks]] plugin. See the [Obsidian Help page on Internal Links](https://help.obsidian.md/Linking+notes+and+files/Internal+links) for more information on Wikilink syntax.
+Quartz 默认支持维基链接，这些链接通过 [[CrawlLinks]] 插件进行解析。更多关于维基链接语法的信息，请参阅 [Obsidian 内部链接帮助页面](https://help.obsidian.md/Linking+notes+and+files/Internal+links)。
 
-This is enabled as a part of [[Obsidian compatibility]] and can be configured and enabled/disabled from that plugin.
+该功能作为 [[Obsidian 兼容性]] 的一部分启用，并可在该插件中进行配置和启用/禁用。
 
-## Syntax
+## 语法
 
-- `[[Path to file]]`: produces a link to `Path to file.md` (or `Path-to-file.md`) with the text `Path to file`
-- `[[Path to file | Here's the title override]]`: produces a link to `Path to file.md` with the text `Here's the title override`
-- `[[Path to file#Anchor]]`: produces a link to the anchor `Anchor` in the file `Path to file.md`
-- `[[Path to file#^block-ref]]`: produces a link to the specific block `block-ref` in the file `Path to file.md`
+- `[[文件路径]]`：生成指向 `文件路径.md`（或 `文件-路径.md`）的链接，显示文本为 `文件路径`
+- `[[文件路径 | 这里是标题覆盖]]`：生成指向 `文件路径.md` 的链接，显示文本为 `这里是标题覆盖`
+- `[[文件路径#锚点]]`：生成指向 `文件路径.md` 中锚点 `锚点` 的链接
+- `[[文件路径#^block-ref]]`：生成指向 `文件路径.md` 中特定块 `block-ref` 的链接
 
-### Embeds
+### 嵌入
 
-- `![[Path to image]]`: embeds an image into the page
-- `![[Path to image|100x145]]`: embeds an image into the page with dimensions 100px by 145px
-- `![[Path to file]]`: transclude an entire page
-- `![[Path to file#Anchor]]`: transclude everything under the header `Anchor`
-- `![[Path to file#^b15695]]`: transclude block with ID `^b15695`
+- `![[图片路径]]`：将图片嵌入页面
+- `![[图片路径|100x145]]`：以 100px × 145px 的尺寸将图片嵌入页面
+- `![[文件路径]]`：转录整个页面内容
+- `![[文件路径#锚点]]`：转录标题为 `锚点` 下的所有内容
+- `![[文件路径#^b15695]]`：转录 ID 为 `^b15695` 的块内容
+

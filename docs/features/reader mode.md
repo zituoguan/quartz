@@ -1,42 +1,42 @@
 ---
-title: Reader Mode
+title: 阅读模式
 tags:
   - component
 ---
 
-Reader Mode is a feature that allows users to focus on the content by hiding the sidebars and other UI elements. When enabled, it provides a clean, distraction-free reading experience.
+阅读模式是一项功能，可以通过隐藏侧边栏和其他界面元素，让用户专注于内容。当启用时，它会提供一个简洁、无干扰的阅读体验。
 
-## Configuration
+## 配置
 
-Reader Mode is enabled by default. To disable it, you can remove the component from your layout configuration in `quartz.layout.ts`:
+阅读模式默认启用。要禁用它，可以在 `quartz.layout.ts` 的布局配置中移除该组件：
 
 ```ts
-// Remove or comment out this line
+// 移除或注释掉此行
 Component.ReaderMode(),
 ```
 
-## Usage
+## 使用方法
 
-The Reader Mode toggle appears as a button with a book icon. When clicked:
+阅读模式切换按钮以一本书的图标显示。点击后：
 
-- Sidebars are hidden
-- Hovering over the content area reveals the sidebars temporarily
+- 侧边栏会被隐藏
+- 鼠标悬停在内容区域时会临时显示侧边栏
 
-Unlike Dark Mode, Reader Mode state is not persisted between page reloads but is maintained during SPA navigation within the site.
+与深色模式不同，阅读模式的状态不会在页面刷新后保留，但在站点内的 SPA 导航期间会保持。
 
-## Customization
+## 自定义
 
-You can customize the appearance of Reader Mode through CSS variables and styles. The component uses the following classes:
+你可以通过 CSS 变量和样式自定义阅读模式的外观。该组件使用以下类名：
 
-- `.readermode`: The toggle button
-- `.readerIcon`: The book icon
-- `[reader-mode="on"]`: Applied to the root element when Reader Mode is active
+- `.readermode`：切换按钮
+- `.readerIcon`：书本图标
+- `[reader-mode="on"]`：当阅读模式激活时应用于根元素
 
-Example customization in your custom CSS:
+在自定义 CSS 中的示例：
 
 ```scss
 .readermode {
-  // Customize the button
+  // 自定义按钮
   svg {
     stroke: var(--custom-color);
   }

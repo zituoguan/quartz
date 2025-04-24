@@ -1,35 +1,36 @@
 ---
-title: Private Pages
+title: 私有页面
 tags:
   - feature/filter
 ---
 
-There may be some notes you want to avoid publishing as a website. Quartz supports this through two mechanisms which can be used in conjunction:
+有些笔记你可能不希望发布到网站上。Quartz 通过两种机制支持这一需求，并且可以结合使用：
 
-## Filter Plugins
+## 过滤插件
 
-[[making plugins#Filters|Filter plugins]] are plugins that filter out content based off of certain criteria. By default, Quartz uses the [[RemoveDrafts]] plugin which filters out any note that has `draft: true` in the frontmatter.
+[[making plugins#Filters|过滤插件]] 是根据特定条件过滤内容的插件。默认情况下，Quartz 使用 [[RemoveDrafts]] 插件，该插件会过滤掉 frontmatter 中包含 `draft: true` 的笔记。
 
-If you'd like to only publish a select number of notes, you can instead use [[ExplicitPublish]] which will filter out all notes except for any that have `publish: true` in the frontmatter.
+如果你只想发布特定的笔记，可以改用 [[ExplicitPublish]] 插件，它会过滤掉所有笔记，只有 frontmatter 中包含 `publish: true` 的笔记会被发布。
 
 > [!warning]
-> Regardless of the filter plugin used, **all non-markdown files will be emitted and available publically in the final build.** This includes files such as images, voice recordings, PDFs, etc. One way to prevent this and still be able to embed local images is to create a folder specifically for public media and add the following two patterns to the ignorePatterns array.
+> 无论使用哪种过滤插件，**所有非 Markdown 文件都会被输出，并在最终构建中公开可用。** 这包括图片、语音录音、PDF 等文件。防止这种情况并仍然能够嵌入本地图片的一种方法是专门创建一个公共媒体文件夹，并在 ignorePatterns 数组中添加以下两个模式。
 >
 > `"!(PublicMedia)**/!(*.md)", "!(*.md)"`
 
 ## `ignorePatterns`
 
-This is a field in `quartz.config.ts` under the main [[configuration]] which allows you to specify a list of patterns to effectively exclude from parsing all together. Any valid [fast-glob](https://github.com/mrmlnc/fast-glob#pattern-syntax) pattern works here.
+这是 `quartz.config.ts` 主 [[configuration]] 下的一个字段，允许你指定一组模式来彻底排除解析。任何有效的 [fast-glob](https://github.com/mrmlnc/fast-glob#pattern-syntax) 模式都可以使用。
 
 > [!note]
-> Bash's glob syntax is slightly different from fast-glob's and using bash's syntax may lead to unexpected results.
+> Bash 的 glob 语法与 fast-glob 略有不同，使用 bash 语法可能会导致意外结果。
 
-Common examples include:
+常见示例包括：
 
-- `some/folder`: exclude the entire of `some/folder`
-- `*.md`: exclude all files with a `.md` extension
-- `!*.md` exclude all files that _don't_ have a `.md` extension
-- `**/private`: exclude any files or folders named `private` at any level of nesting
+- `some/folder`：排除整个 `some/folder` 文件夹
+- `*.md`：排除所有 `.md` 扩展名的文件
+- `!*.md`：排除所有 _不是_ `.md` 扩展名的文件
+- `**/private`：排除任意层级下名为 `private` 的文件或文件夹
 
 > [!warning]
-> Marking something as private via either a plugin or through the `ignorePatterns` pattern will only prevent a page from being included in the final built site. If your GitHub repository is public, also be sure to include an ignore for those in the `.gitignore` of your Quartz. See the `git` [documentation](https://git-scm.com/docs/gitignore#_pattern_format) for more information.
+> 无论通过插件还是 `ignorePatterns` 标记为私有，只会阻止页面被包含在最终构建的网站中。如果你的 GitHub 仓库是公开的，也请确保在 Quartz 的 `.gitignore` 文件中忽略这些内容。更多信息请参阅 `git` [文档](https://git-scm.com/docs/gitignore#_pattern_format)。
+

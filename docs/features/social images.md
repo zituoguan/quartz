@@ -1,19 +1,19 @@
 ---
-title: "Social Media Preview Cards"
+title: "社交媒体预览卡片"
 ---
 
-A lot of social media platforms can display a rich preview for your website when sharing a link (most notably, a cover image, a title and a description).
+许多社交媒体平台在分享链接时可以显示丰富的预览内容（最常见的是封面图片、标题和描述）。
 
-Quartz can also dynamically generate and use new cover images for every page to be used in link previews on social media for you.
+Quartz 也可以为每个页面动态生成新的封面图片，用于社交媒体上的链接预览。
 
-## Showcase
+## 展示
 
-After enabling the [[CustomOgImages]] emitter plugin, the social media link preview for [[authoring content | Authoring Content]] looks like this:
+启用 [[CustomOgImages]] 发射器插件后，[[authoring content | 内容创作]] 的社交媒体链接预览如下所示：
 
-| Light                               | Dark                               |
+| 浅色模式                           | 深色模式                           |
 | ----------------------------------- | ---------------------------------- |
 | ![[social-image-preview-light.png]] | ![[social-image-preview-dark.png]] |
 
-## Configuration
+## 配置
 
-This functionality is provided by the [[CustomOgImages]] plugin. See the plugin page for customization options.
+此功能由 [[CustomOgImages]] 插件提供。自定义选项请参见插件页面。

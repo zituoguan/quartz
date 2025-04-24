@@ -1,13 +1,12 @@
 ---
-title: "Roam Research Compatibility"
+title: "Roam Research 兼容性"
 tags:
   - feature/transformer
 ---
 
-[Roam Research](https://roamresearch.com) is a note-taking tool that organizes your knowledge graph in a unique and interconnected way.
+[Roam Research](https://roamresearch.com) 是一款以独特且互联方式组织知识图谱的笔记工具。
 
-Quartz supports transforming the special Markdown syntax from Roam Research (like `{{[[components]]}}` and other formatting) into
-regular Markdown via the [[RoamFlavoredMarkdown]] plugin.
+Quartz 支持将 Roam Research 的特殊 Markdown 语法（如 `{{[[components]]}}` 及其他格式）通过 [[RoamFlavoredMarkdown]] 插件转换为常规 Markdown。
 
 ```typescript title="quartz.config.ts"
 plugins: {
@@ -21,8 +20,8 @@ plugins: {
 ```
 
 > [!warning]
-> As seen above placement of `Plugin.RoamFlavoredMarkdown()` within `quartz.config.ts` is very important. It must come before `Plugin.ObsidianFlavoredMarkdown()`.
+> 如上所示，在 `quartz.config.ts` 中放置 `Plugin.RoamFlavoredMarkdown()` 的位置非常重要。它必须在 `Plugin.ObsidianFlavoredMarkdown()` 之前。
 
-## Customization
+## 自定义
 
-This functionality is provided by the [[RoamFlavoredMarkdown]] plugin. See the plugin page for customization options.
+此功能由 [[RoamFlavoredMarkdown]] 插件提供。请参阅插件页面了解自定义选项。

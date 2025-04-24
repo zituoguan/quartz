@@ -1,30 +1,31 @@
 ---
-title: Full-text Search
+title: 全文搜索
 tags:
   - component
 ---
 
-Full-text search in Quartz is powered by [Flexsearch](https://github.com/nextapps-de/flexsearch). It's fast enough to return search results in under 10ms for Quartzs as large as half a million words.
+Quartz 的全文搜索由 [Flexsearch](https://github.com/nextapps-de/flexsearch) 提供支持。即使是包含多达 50 万字的 Quartz，也能在 10 毫秒内返回搜索结果。
 
-It can be opened by either clicking on the search bar or pressing `⌘`/`ctrl` + `K`. The top 5 search results are shown on each query. Matching subterms are highlighted and the most relevant 30 words are excerpted. Clicking on a search result will navigate to that page.
+你可以通过点击搜索栏或按下 `⌘`/`ctrl` + `K` 打开搜索。每次查询会显示前 5 个搜索结果。匹配的子词会被高亮显示，并摘录最相关的 30 个单词。点击搜索结果会跳转到对应页面。
 
-To search content by tags, you can either press `⌘`/`ctrl` + `shift` + `K` or start your query with `#` (e.g. `#components`).
+要通过标签搜索内容，可以按 `⌘`/`ctrl` + `shift` + `K`，或在查询前加上 `#`（例如 `#components`）。
 
-This component is also keyboard accessible: Tab and Shift+Tab will cycle forward and backward through search results and Enter will navigate to the highlighted result (first result by default). You are also able to navigate search results using `ArrowUp` and `ArrowDown`.
+该组件也支持键盘操作：Tab 和 Shift+Tab 可前后切换搜索结果，Enter 会跳转到高亮结果（默认是第一个结果）。你也可以用 `ArrowUp` 和 `ArrowDown` 导航搜索结果。
 
 > [!info]
-> Search requires the `ContentIndex` emitter plugin to be present in the [[configuration]].
+> 搜索功能需要在 [[configuration]] 中启用 `ContentIndex` emitter 插件。
 
-### Indexing Behaviour
+### 索引行为
 
-By default, it indexes every page on the site with **Markdown syntax removed**. This means link URLs for instance are not indexed.
+默认情况下，它会索引站点上的每个页面，并**移除 Markdown 语法**。例如，链接的 URL 不会被索引。
 
-It properly tokenizes Chinese, Korean, and Japenese characters and constructs separate indexes for the title, content and tags, weighing title matches above content matches.
+它能正确地对中文、韩文和日文字符进行分词，并为标题、内容和标签分别建立索引，标题匹配的权重高于内容匹配。
 
-## Customization
+## 自定义
 
-- Removing search: delete all usages of `Component.Search()` from `quartz.layout.ts`.
-- Component: `quartz/components/Search.tsx`
-- Style: `quartz/components/styles/search.scss`
-- Script: `quartz/components/scripts/search.inline.ts`
-  - You can edit `contextWindowWords`, `numSearchResults` or `numTagResults` to suit your needs
+- 移除搜索：从 `quartz.layout.ts` 中删除所有 `Component.Search()` 的用法。
+- 组件：`quartz/components/Search.tsx`
+- 样式：`quartz/components/styles/search.scss`
+- 脚本：`quartz/components/scripts/search.inline.ts`
+  - 你可以根据需要编辑 `contextWindowWords`、`numSearchResults` 或 `numTagResults`
+
