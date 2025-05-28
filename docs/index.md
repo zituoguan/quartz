@@ -1,5 +1,5 @@
 ---
-title: 欢迎来到 Quartz 4
+title: Quartz 4 中文文档
 ---
 
 Quartz 是一个快速、功能齐全的静态网站生成器，可以将 Markdown 内容转换为功能完善的网站。已有数千名学生、开发者和教师[[showcase|正在使用 Quartz]]来发布个人笔记、网站和[数字花园](https://jzhao.xyz/posts/networked-thought)。
