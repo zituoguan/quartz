@@ -22,8 +22,8 @@ const config: QuartzConfig = {
 
 - `pageTitle`：站点标题。生成 [[RSS Feed]] 时也会用到。
 - `pageTitleSuffix`：添加在页面标题末尾的字符串。仅影响浏览器标签页标题，不影响页面顶部显示的标题。
-- `enableSPA`：是否启用站点的 [[SPA 路由]]。
-- `enablePopovers`：是否启用站点的 [[弹出预览]]。
+- `enableSPA`：是否启用站点的 [[SPA Rputing|SPA 路由]]。
+- `enablePopovers`：是否启用站点的 [[popover previews | 弹出预览]]。
 - `analytics`：站点分析工具配置。可选值包括：
   - `null`：不使用分析工具；
   - `{ provider: 'google', tagId: '<your-google-tag>' }`：使用 Google Analytics；
