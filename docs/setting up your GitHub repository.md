@@ -34,7 +34,14 @@ npx quartz sync --no-pull
 > [!warning]- `fatal: --[no-]autostash option is only valid with --rebase`
 > 你可能使用了过时的 `git` 版本。更新 `git` 应该可以解决此问题。
 
-以后每次想要将更新推送到仓库时，只需运行 `npx quartz sync` 即可。
+> [!warning]- `fatal: The remote end hung up unexpectedly`
+> 这可能是由于 Git 的默认缓冲区大小不足。你可以通过以下命令增加缓冲区大小来解决此问题：
+>
+> ```bash
+> git config http.postBuffer 524288000
+> ```
+
+在将来的更新中，每当你想将更新推送到你的仓库时，只需运行 `npx quartz sync` 即可。
 
 > [!hint] 标志与选项
 > 查看完整帮助选项，可以运行 `npx quartz sync --help`。
